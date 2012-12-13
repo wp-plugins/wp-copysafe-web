@@ -90,7 +90,7 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 **Limitations**
 
-* CopySafe Web is not supported on Mac. However it is supported on all Windows computers since XP (92% of net users).
+* CopySafe Web is not supported on Mac. However it is supported on all Windows computers since XP (92% of net users). It is not possible to properly secure web content on Mac, Linux or any handheld devices not running Windows 8. All other platforms in total remain a minority. As such supporting them is not viable and doing so would only undermine the standard that CopySafe Web clients require.
 
 **Licensing benefits**
 
