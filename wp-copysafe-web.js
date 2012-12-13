@@ -1,6 +1,6 @@
 <!-- hide JavaScript from non-JavaScript browsers
 
-	//  WP Copysafe Web - Version 4.6.0.6
+	//  WP Copysafe Web - Version 4.7.1.0
 	//  Copyright (c) 1998-2012 ArtistScope. All Rights Reserved.
 	//  www.artistscope.com
 	//
@@ -20,13 +20,13 @@ var m_szDownloadIE = "/wp-content/plugins/wp-copysafe-web/download_ie.html?ref="
 var m_szDownloadFX = "/wp-content/plugins/wp-copysafe-web/download_fx.html?ref=" + m_szLocation;
 
 //====================================================
-//   Current version == 4.6.0.6
+//   Current version == 4.7.1.0
 //====================================================
 
 var m_nV1=4;
-var m_nV2=6;
-var m_nV3=0;
-var m_nV4=6;
+var m_nV2=7;
+var m_nV3=1;
+var m_nV4=0;
 
 //===========================
 //   DO NOT EDIT BELOW 

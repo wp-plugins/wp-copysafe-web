@@ -110,7 +110,7 @@ function wpcsw_admin_page_list() {
             $delete_link = '<a href="'.home_url().'/wp-admin/admin.php?page=wpcsw_list&id='.$key.'&wpcsw_wpnonce='.$security.'&action=del">Delete</a>';
 
             // prepare table row
-            $table.= '<tr><td>'.$edit_link.$delete_link.'</td><td nowrap>'.$file_name.'</td><td nowrap>'.$file_size.'</td><td nowrap>'.$file_date.'</td></tr>';
+            $table.= '<tr><td>'.$edit_link.$delete_link.'</td><td >'.$file_name.'</td><td>'.$file_size.'</td><td>'.$file_date.'</td></tr>';
         }
     }
     else {
@@ -235,32 +235,32 @@ function wpcsw_admin_page_settings() {
         <p><strong>Default settings applied to all protected pages:</strong></p>
     	<tbody>
             <tr>
-    		  <th><label>Plugin Folder:</label></th>
-    		  <td> <input value="<?php echo $plugin_folder; ?>" name="plugin_folder" class="regular-text code" type="text"></td>
+    		  <th align="left"><label>Plugin Folder:</label></th>
+    		  <td align="left"> <input value="<?php echo $plugin_folder; ?>" name="plugin_folder" class="regular-text code" type="text"></td>
     	    </tr>
         	<tr>
-        		<th><label>Mode</label></th>
-        		<td> <select name="mode"><?php echo $select; ?></select></td>
+        		<th align="left"><label>Mode</label></th>
+        		<td align="left"> <select name="mode"><?php echo $select; ?></select></td>
         	</tr>
             <tr>
-    		  <th><label>Allow IE:</label></th>
-    		  <td> <input name="ie" type="checkbox" value="1" <?php echo $ie; ?>></td>
+    		  <th align="left"><label>Allow IE:</label></th>
+    		  <td align="left"> <input name="ie" type="checkbox" value="1" <?php echo $ie; ?>></td>
     	    </tr>
             <tr>
-    		  <th><label>Allow Firefox:</label></th>
-    		  <td> <input name="ff" type="checkbox" value="1" <?php echo $ff; ?>></td>
+    		  <th align="left"><label>Allow Firefox:</label></th>
+    		  <td align="left"> <input name="ff" type="checkbox" value="1" <?php echo $ff; ?>></td>
     	    </tr>
             <tr>
-    		  <th><label>Allow Chrome:</label></th>
-    		  <td> <input name="ch" type="checkbox" value="1" <?php echo $ch; ?>></td>
+    		  <th align="left"><label>Allow Chrome:</label></th>
+    		  <td align="left"> <input name="ch" type="checkbox" value="1" <?php echo $ch; ?>></td>
     	    </tr>
             <tr>
-    		  <th><label>Allow Opera:</label></th>
-    		  <td> <input name="op" type="checkbox" value="1" <?php echo $op; ?>></td>
+    		  <th align="left"><label>Allow Opera:</label></th>
+    		  <td align="left"> <input name="op" type="checkbox" value="1" <?php echo $op; ?>></td>
     	    </tr>
             <tr>
-    		  <th><label>Allow Safari:</label></th>
-    		  <td> <input name="sa" type="checkbox" value="1" <?php echo $sa; ?>></td>
+    		  <th align="left"><label>Allow Safari:</label></th>
+    		  <td align="left"> <input name="sa" type="checkbox" value="1" <?php echo $sa; ?>></td>
     	    </tr>
     	</tbody>
     </table>

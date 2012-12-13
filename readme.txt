@@ -13,7 +13,7 @@ Insert CopySafe Web encrypted images to copy protect all media in posts and page
 
 == Description ==
 
-Insert CopySafe Web encrypted images to copy protect all media including image, Flash, PDF and video from right-click-saving, mouse-drag, Print Screen and screen capture. By using this plugin to simply adding a small CopySafe encrypted image you can add the most secure copy protection to any page or post.
+Insert [CopySafe Web](http://www.artistscope.com/copysafe_web_protection.asp) encrypted images to copy protect all media including image, Flash, PDF and video from right-click-saving, mouse-drag, Print Screen and screen capture. By using this plugin to simply adding a small CopySafe encrypted image you can add the most secure copy protection to any page or post.
 
 * Easy install.
 * Upload and embed CopySafe Web using WordPress native media tools.
@@ -27,6 +27,8 @@ Insert CopySafe Web encrypted images to copy protect all media including image, 
 
 If a visitor does not have the appropriate plugin installed for their web browser, they are redirected to instructions with a download link. Because browser detection is dependent on JavaScript, if a visitor has JavaScript disabled they also will be redirected for instructions on how to correct their browser settings. These download and instruction pages are included in the plugin's folder and can be customized to suit your own messages and design.
 
+More information and online demos protecting a variety of different media can be seen at the [CopySafe Web Protection](http://www.artistscope.com/copysafe_web_protection.asp) site. 
+
 ** Implementation **
 
 Click on the [C] media button above a post to upload and embed CopySafe Web encrypted images in your current post or page. When inserting a protected image object, the necessary shortcode is automatically inserted into the post editor. 
@@ -38,7 +40,7 @@ You can upload new image class documents or select from a list of already upload
 * Enable or disable use of browser menus
 * Enable or disable use of the keyboard
 
-For more information visit http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp
+For more information visit the [CopySafe Web Protect](http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp) plugin page at ArtistScope.
 
 == Installation ==
 
@@ -50,6 +52,8 @@ This section describes how to install the plugin and get it working.
 4. Set write permissions on this new folder
 5. Check and modify the default settings to suit your pages
 6. You can now add CopySafe Web images using its media button above the post editor
+
+If you do not have any CopySafe Web encrypted images for testing, you can download this [test file](http://www.artistscope.com/download/cs/icon_0020_0020_C.zip) which satisfies the file type criteria. It is licensed for "localhost" so you can activate capture protection on your test server.
 
 == Frequently Asked Questions ==
 
@@ -100,4 +104,8 @@ CopySafe Web is specially designed for a wide variety of scenarios.
 * The CopySafe Web converter is available as Windows desktop software.
 * Converter operable by Command-line on Windows computers and servers.
 * Custom DLLs are available to interface CMD version with web scripts.
+
+**Alternatives**
+
+CopySafe Web is most secure for "images" and while it can prevent Print Screen and screen capture for any other media that can be displayed on a web page, there are other solutions specially designed for specific media that will be more secure. For example [CopySafe PDF Protector](http://www.artistscope.com/copysafe_pdf_protection.asp) is specially designed for PDF documents and [ArtistScope Secure Video](http://www.artistscope.com/secure_video_protection.asp) is specially designed for video file. For online viewing only, the [ArtistScope Site Protection System (ASPS)](http://www.artistscope.com/artis-secure-web-reader.asp) uses a secure web browser that is properly designed to protect web media rather than expose it. Each of these solutions have WordPress plugins or widgets available for easy integration into your WordPress project. 
 
