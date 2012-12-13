@@ -29,6 +29,8 @@ If a visitor does not have the appropriate plugin installed for their web browse
 
 More information and online demos protecting a variety of different media can be seen at the [CopySafe Web Protection](http://www.artistscope.com/copysafe_web_protection.asp) site. 
 
+You can see this plugin and our other WP copy protection plugins in action on our [WordPress demo website](http://wordpress.artistscope.com).
+
 ** Implementation **
 
 Click on the [C] media button above a post to upload and embed CopySafe Web encrypted images in your current post or page. When inserting a protected image object, the necessary shortcode is automatically inserted into the post editor. 
