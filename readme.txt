@@ -1,4 +1,4 @@
-=== WP Plugin For CopySafe Web ===
+=== WP Plugin For CopySafe Web Protection ===
 
 Contributors: ArtistScope
 Donate link: http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp
@@ -13,7 +13,7 @@ Insert CopySafe Web encrypted images to copy protect all media in posts and page
 
 == Description ==
 
-Insert [CopySafe Web](http://www.artistscope.com/copysafe_web_protection.asp) encrypted images to copy protect all media including image, Flash, PDF and video from right-click-saving, mouse-drag, Print Screen and screen capture. By using this plugin to simply adding a small CopySafe encrypted image you can add the most secure copy protection to any page or post.
+Insert [CopySafe Web Protection](http://www.artistscope.com/copysafe_web_protection.asp) using encrypted images to copy protect all media including image, Flash, PDF and video from right-click-saving and mouse-drag and [prevent Print Screen and screen capture]( http://www.artistscope.com/prevent-screen-capture.asp). This plugin can add [copy protection](http://www.artistscope.com/copy-protect-web-pages.asp) to any page or post by simply adding a small CopySafe [encrypted image]( http://www.artistscope.com/image-encryption.asp).
 
 * Easy install.
 * Upload and embed CopySafe Web using WordPress native media tools.
@@ -25,11 +25,17 @@ Insert [CopySafe Web](http://www.artistscope.com/copysafe_web_protection.asp) en
 * Add copy protection to by adding just a 20 x 20 pixel image.
 * Protection for all media from Printscreen and screen capture.
 
-If a visitor does not have the appropriate plugin installed for their web browser, they are redirected to instructions with a download link. Because browser detection is dependent on JavaScript, if a visitor has JavaScript disabled they also will be redirected for instructions on how to correct their browser settings. These download and instruction pages are included in the plugin's folder and can be customized to suit your own messages and design.
+The use of CopySafe Web [encrypted images](http://www.artistscope.com/image-encryption.asp) is the most secure image protection solution because those images are [domain locked]( http://www.artistscope.com/domain-lock.asp) and cannot be used on any other website. They are also safe from your webmaster. 
 
-More information and online demos protecting a variety of different media can be seen at the [CopySafe Web Protection](http://www.artistscope.com/copysafe_web_protection.asp) site. 
+**How it works**
 
-You can see this plugin and our other WP copy protection plugins in action on our [WordPress demo website](http://wordpress.artistscope.com).
+CopySafe Web uses a web browser plugin (like the Flash browser plugin) [prevent Print Screen and screen capture]( http://www.artistscope.com/prevent-screen-capture.asp). That plugin is activated when CopySafe Web image loads and it deactivates when the visitor leaves the page. 
+
+When a visitor loads a CopySafe Web [copy protected page]( http://www.artistscope.com/copy-protect-web-pages.asp) their browser is checked for the plugin and if it is not detected then they are redirected to a download page with instructions for installation. After installing the plugin the visitor can return to explore your protected web pages. The download pages are included with this WP plugin and can be customized to suit your own messages and design.
+
+More information and online demos protecting a variety of different media can be seen at the [CopySafe Web Protection](http://www.artistscope.com/copysafe_web_protection.asp) website. 
+
+You can see this plugin and our other WP [copy protection plugins] in action on our WordPress demo site.
 
 ** Implementation **
 
@@ -42,7 +48,7 @@ You can upload new image class documents or select from a list of already upload
 * Enable or disable use of browser menus
 * Enable or disable use of the keyboard
 
-For more information visit the [CopySafe Web Protect](http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp) plugin page at ArtistScope.
+For more information visit the [CopySafe Web Protection](http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp) plugin page at ArtistScope.
 
 == Installation ==
 
@@ -103,11 +109,11 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 CopySafe Web is specially designed for a wide variety of scenarios.
 
-* The CopySafe Web converter is available as Windows desktop software.
-* Converter operable by Command-line on Windows computers and servers.
-* Custom DLLs are available to interface CMD version with web scripts.
+* The [CopySafe Web converter]( http://www.artistscope.com/copysafe_web_protection_gui.asp) is available as Windows desktop software.
+* Converter [runs by Command-line]( http://www.artistscope.com/copysafe_web_protection_cmd.asp) on Windows computers and servers.
+* Custom DLL to [interface ommand-line with web pages]( http://www.artistscope.com/copysafe_web_protection_cmd.asp#server-side).
 
 **Alternatives**
 
-CopySafe Web is most secure for "images" and while it can prevent Print Screen and screen capture for any other media that can be displayed on a web page, there are other solutions specially designed for specific media that will be more secure. For example [CopySafe PDF Protector](http://www.artistscope.com/copysafe_pdf_protection.asp) is specially designed for PDF documents. For online viewing only, the [ArtistScope Site Protection System (ASPS)](http://www.artistscope.com/artis-secure-web-reader.asp) uses a secure web browser that is properly designed to protect web media rather than expose it. Soon [ArtistScope Secure Video](http://www.artistscope.com/secure_video_protection.asp) will be available that is specially designed for video files. Each of these solutions have WordPress plugins or widgets available for easy integration into your WordPress project. 
+CopySafe Web is most secure for "images" and while it can prevent Print Screen and screen capture for all other media displayed on a web page, other solutions are available that may be more specifically suited media such as [CopySafe PDF Protector](http://www.artistscope.com/copysafe_pdf_protection.asp) is specially designed for PDF documents. For viewing online, the [ArtistScope Site Protection System (ASPS)](http://www.artistscope.com/artis-secure-web-reader.asp) uses a secure web browser that is properly designed to protect web media rather than expose it. Soon [ArtistScope Secure Video](http://www.artistscope.com/secure_video_protection.asp) will be available specially for video files. WordPress plugins or widgets are available for all of these copy protection solutions for easy integration into your WordPress project. 
 
