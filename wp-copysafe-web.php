@@ -2,12 +2,13 @@
 /*
 Plugin Name: CopySafe Web
 Plugin URI: http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp
-Description: Add copy protection and control web browser access. With Copysafe Web software you can use encrypted images and extend copy protection to prevent Prinstcreen and screen capture software.
+Description: Add copy protection from Print Screen and screen capture. Copysafe Web uses encrypted images and domain lock to extend copy protection for all media displayed on a web page.
 Author: ArtistScope
-Version: 0.2
+Version: 0.3
 Author URI: http://www.artistscope.com/
 
 	Copyright 2012 ArtistScope Pty Limited
+
 
 	This program is free software: you can redistribute it and/or modify
 	it under the terms of the GNU General Public License as published by
@@ -43,186 +44,81 @@ function wpcsw_admin_menus() {
 // ============================================================================================================================
 # "List" Page
 function wpcsw_admin_page_list() {
-    // check current user capabilities.
-    if ( !current_user_can( 'publish_posts' ) ) {
-        wp_die( __( 'You do not have sufficient permissions to access this page!' ) );
-    }
-
-    // "Edit" link clicked, proceed
-    $edit_output = '';
-    if ( @$_GET['id'] != false || @$_GET['id'] != null ) {
-        // check securtiy key
-        if ( !wp_verify_nonce( @$_GET['wpcsw_wpnonce'], 'wpcsw_list' ) ) {
-            wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-        }
-
-        // check for action
-        if ( @empty( $_GET['action'] ) ) {
-            wp_die( __( 'Incorrect usage!' ) );
-        }
-
-        // pre-delete file
-        if ( $_GET['action'] == 'del' ) {
-            $id = (int)$_GET['id'];
-            $wpcsw_options = get_option( 'wpcsw_options' );
-
-            // remove class file
-            unlink ( $wpcsw_options['files_list'][$id]['path'] );
-
-            // remove file options
-            //unset ( $wpcsw_options['files_options'][$id] );
-            wpcsw_delete_file_options( $id, $wpcsw_options['files_list'][$id]['name'] );
-
-            // remove from files list
-            unset ( $wpcsw_options['files_list'][$id] );
-
-            update_option( 'wpcsw_options', $wpcsw_options );
-        }
-    }
-
-
-    $msg      = '';
-    $table    = '';
-    $security = wp_create_nonce( 'wpcsw_list' );
-
-    // get files list to display
-    $wpcsw_options = get_option( 'wpcsw_options' );
-    $files_list    = $wpcsw_options['files_list'];
-    if ( count( $files_list ) > 0 ) {
-        foreach( $files_list as $key => $file ) {
-            $file_name = $file['name'];
-            $file_size = $file['size'];
-            $file_date = $file['date'];
-
-            // calculate file size
-            if ( round ( $file_size/1024 ,0 ) > 1 ) {
-                $file_size = round ( $file_size/1024, 0 );
-                $file_size = "$file_size KB";
-            }
-            else {
-                $file_size = "$file_size B";
-            }
-
-            $file_date = date("n/j/Y g:h A");
-
-            $edit_link = '';
-            //$edit_link   = '<a href="'.home_url().'/wp-admin/admin.php?page=wpcsw_list&id='.$key.'&wpcsw_wpnonce='.$security.'&action=edit">Edit</a> | ';
-            $delete_link = '<a href="'.home_url().'/wp-admin/admin.php?page=wpcsw_list&id='.$key.'&wpcsw_wpnonce='.$security.'&action=del">Delete</a>';
-
-            // prepare table row
-            $table.= '<tr><td>'.$edit_link.$delete_link.'</td><td >'.$file_name.'</td><td>'.$file_size.'</td><td>'.$file_date.'</td></tr>';
-        }
-    }
-    else {
-        $table.= '<tr><td colspan="4">'.__( 'No file uploaded yet.' ).'</td></tr>';
-    }
-
-?>
-<div class="wrap">
-    <div class="icon32" id="icon-file"><br /></div>
-    <?php echo $msg; ?>
-    <h2>List Class Files</h2>
-    <div id="col-container">
-        <div id="col-right">
-            <div class="col-wrap">
-                <!-- <h3>Edit Class File Options</h3> -->
-                <?php echo $edit_output; ?>
-            </div>
-            <div class="clear"></div>
-        </div>
-        <div id="col-left">
+    $files = _get_wpcsw_uploadfile_list();
+    
+	foreach ($files as $file) {
+		$link = "<div class='row-actions'>
+					<span><a href='admin.php?page=wpcsw_list&cswfilename={$file["filename"]}&action=cswdel' title=''>Delete</a></span>											
+				</div>" ;
+        // prepare table row
+        $table.= "<tr><td></td><td>{$file["filename"]} {$link}</td><td>{$file["filesize"]}</td><td>{$file["filedate"]}</td></tr>";
+	}
+		
+	if( !$table ){
+		 $table.= '<tr><td colspan="3">'.__('No file uploaded yet.').'</td></tr>';
+	}
+	?>
+	<div class="wrap">
+	    <div class="icon32" id="icon-file"><br /></div>
+	    <?php echo $msg; ?>
+	    <h2>List Class Files</h2>
+	    <div id="col-container" style="width:700px;">        
             <div class="col-wrap">
                 <h3>Uploaded Class Files</h3>
                 <table class="wp-list-table widefat">
                     <thead>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th>File</th>
-                            <th>Size</th>
-                            <th>Date</th>
-                        </tr>
+                        <tr><th width="5px">&nbsp;</th><th>File</th><th>Size</th><th>Date</th></tr>
                     </thead>
                     <tbody>
-                    <?php echo $table; ?>
+                    	<?php echo $table; ?>
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <th>&nbsp;</th>
-                            <th>File</th>
-                            <th>Size</th>
-                            <th>Date</th>
-                        </tr>
+                        <tr><th>&nbsp;</th><th>File</th><th>Size</th><th>Date</th></tr>
                     </tfoot>
                 </table>
-            </div>
-            <div class="clear"></div>
-        </div>
-    </div>
-    <div class="clear"></div>
-</div>
-<div class="clear"></div>
+            </div>        
+	    </div>
+	    <div class="clear"></div>
+	</div>
 <?php
 }
 
 // ============================================================================================================================
 # "Settings" page
 function wpcsw_admin_page_settings() {
-    // check current user capabilities.
-    if ( !current_user_can( 'publish_posts' ) ) {
-        wp_die( __( 'You do not have sufficient permissions to access this page!' ) );
-    }
-
-    // check securtiy key
-    if ( !empty( $_POST ) && !wp_verify_nonce( @$_POST['wpcsw_wpnonce'], 'wpcsw_settings' ) ) {
-        wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
-    }
-
     $msg='';
-    // settings for msubmitted, proceed
     if ( !empty( $_POST ) ) {
-        extract( $_POST, EXTR_OVERWRITE );
-        $wpcsw_options = get_option( 'wpcsw_options' );
-
-        // check submitted data
-        $plugin_folder = ( empty( $plugin_folder ) ? '' : esc_attr( $plugin_folder ) );
-        $ie = ( empty( $ie ) ? '' : 'checked' );
-        $ff = ( empty( $ff ) ? '' : 'checked' );
-        $ch = ( empty( $ch ) ? '' : 'checked' );
-        $op = ( empty( $op ) ? '' : 'checked' );
-        $sa = ( empty( $sa ) ? '' : 'checked' );
-
-        // update plugin settings
+    	$wpcsw_options = get_option( 'wpcsw_settings' ); 
+    	extract( $_POST, EXTR_OVERWRITE );
+    	
+    	if( !$upload_path )$upload_path = 'wp-content/uploads/copysafe-web/';
+    	$upload_path = str_replace( "\\", "/", stripcslashes($upload_path)) ;    	
+    	if(substr($upload_path, -1) != "/")$upload_path .= "/" ;
+    	    	
         $wpcsw_options['settings'] = array(
-                                        'plugin_folder'=> "$plugin_folder",
-                                        'mode'         => "$mode",
-                                        'ie'           => "$ie",
-                                        'ff'           => "$ff",
-                                        'ch'           => "$ch",
-                                        'op'           => "$op",
-                                        'sa'           => "$sa"
-                                    );
-
-        update_option( 'wpcsw_options', $wpcsw_options );
-        $msg = '<div class="updated"><p><strong>'.__( 'Settings Saved' ).'</strong></p></div>';
+                                        'upload_path'  => $upload_path ,
+        					'max_size'	   => (int)$max_size,
+                                        'mode'         => $mode,
+                                        'ie'           => $ie,
+                                        'ff'           => $ff,
+                                        'ch'           => $ch,
+        					'nav'	   	=> $nav,
+                                        'op'           => $op,
+                                        'sa'           => $sa
+                                    );       
+        
+        $upload_path = ABSPATH . $upload_path ;
+        if( !is_dir($upload_path) )mkdir($upload_path, 0, true)	;
+        
+        update_option( 'wpcsw_settings', $wpcsw_options );
+       	$msg = '<div class="updated"><p><strong>'.__( 'Settings Saved' ).'</strong></p></div>';
     }
 
-    $security      = wp_create_nonce( 'wpcsw_settings' );
-    $wpcsw_options = get_option( 'wpcsw_options' );
-
-    // get plugin settings to display.
-    $plugin_folder = $wpcsw_options['settings']['plugin_folder'];
-    $mode          = $wpcsw_options['settings']['mode'];
-    $ie            = $wpcsw_options['settings']['ie'];
-    $ff            = $wpcsw_options['settings']['ff'];
-    $ch            = $wpcsw_options['settings']['ch'];
-    $op            = $wpcsw_options['settings']['op'];
-    $sa            = $wpcsw_options['settings']['sa'];
-
-    $select = '<option value="demo">Demo Mode</option><option value="licensed">Licensed</option><option value="debug">Debugging Mode</option>';
-    $select = str_replace( 'value="'.$mode.'"','value="'.$mode.'" selected',$select);
-
-    $wpcsw_token = wp_create_nonce('wpcsw_token');
-    $url = trailingslashit( plugin_dir_url( __FILE__ ) );
+    $wpcsw_options = get_option( 'wpcsw_settings' );
+   	if( $wpcsw_options["settings"] )
+   		extract( $wpcsw_options["settings"], EXTR_OVERWRITE );
+   	$select = '<option value="demo">Demo Mode</option><option value="licensed">Licensed</option><option value="debug">Debugging Mode</option>';
+   	$select = str_replace( 'value="'.$mode.'"','value="'.$mode.'" selected', $select);
 
 ?>
 <div class="wrap">
@@ -230,43 +126,50 @@ function wpcsw_admin_page_settings() {
     <?php echo $msg; ?>
     <h2>Settings</h2>
     <form action="" method="post">
-    <input type="hidden" value="<?php echo $security; ?>" name="wpcsw_wpnonce" id="wpcsw_wpnonce" />
-    <table class="form-table">
-        <p><strong>Default settings applied to all protected pages:</strong></p>
-    	<tbody>
-            <tr>
-    		  <th align="left"><label>Plugin Folder:</label></th>
-    		  <td align="left"> <input value="<?php echo $plugin_folder; ?>" name="plugin_folder" class="regular-text code" type="text"></td>
-    	    </tr>
-        	<tr>
-        		<th align="left"><label>Mode</label></th>
-        		<td align="left"> <select name="mode"><?php echo $select; ?></select></td>
-        	</tr>
-            <tr>
-    		  <th align="left"><label>Allow IE:</label></th>
-    		  <td align="left"> <input name="ie" type="checkbox" value="1" <?php echo $ie; ?>></td>
-    	    </tr>
-            <tr>
-    		  <th align="left"><label>Allow Firefox:</label></th>
-    		  <td align="left"> <input name="ff" type="checkbox" value="1" <?php echo $ff; ?>></td>
-    	    </tr>
-            <tr>
-    		  <th align="left"><label>Allow Chrome:</label></th>
-    		  <td align="left"> <input name="ch" type="checkbox" value="1" <?php echo $ch; ?>></td>
-    	    </tr>
-            <tr>
-    		  <th align="left"><label>Allow Opera:</label></th>
-    		  <td align="left"> <input name="op" type="checkbox" value="1" <?php echo $op; ?>></td>
-    	    </tr>
-            <tr>
-    		  <th align="left"><label>Allow Safari:</label></th>
-    		  <td align="left"> <input name="sa" type="checkbox" value="1" <?php echo $sa; ?>></td>
-    	    </tr>
-    	</tbody>
-    </table>
-    <p class="submit">
-        <input type="submit" value="Save Settings" class="button-primary" id="submit" name="submit">
-    </p>
+	    <table class="form-table">
+	        <p><strong>Default settings applied to all protected pages:</strong></p>
+	    	<tbody>
+	            <tr>
+	    		  <th align="left"><label>Plugin Folder:</label></th>
+	    		  <td align="left"> <input value="<?php echo $upload_path; ?>" name="upload_path" class="regular-text code" type="text"></td>
+	    	    </tr>
+	    	    <tr>
+	    		  <th align="left"><label>Maximum upload size:</label></th>
+	    		  <td align="left"> <input value="<?php echo $max_size; ?>" name="max_size" class="regular-text" style="width:70px;text-align:right;" type="text">&nbsp;KB</td>
+	    	    </tr>
+	        	<tr>
+	        		<th align="left"><label>Mode</label></th>
+	        		<td align="left"> <select name="mode"><?php echo $select; ?></select></td>
+	        	</tr>
+	            <tr>
+	    		  <th align="left"><label>Allow IE:</label></th>
+	    		  <td align="left"> <input name="ie" type="checkbox" value="checked" <?php echo $ie; ?>></td>
+	    	    </tr>
+	            <tr>
+	    		  <th align="left"><label>Allow Firefox:</label></th>
+	    		  <td align="left"> <input name="ff" type="checkbox" value="checked" <?php echo $ff; ?>></td>
+	    	    </tr>
+	            <tr>
+	    		  <th align="left"><label>Allow Chrome:</label></th>
+	    		  <td align="left"> <input name="ch" type="checkbox" value="checked" <?php echo $ch; ?>></td>
+	    	    </tr>
+	    	    <tr>
+		    		<th align="left"><label>Allow Navigator:</label></th>
+		    		<td align="left"><input name="nav" type="checkbox" value="checked" <?php echo $nav; ?>></td>
+		    	 </tr>
+	            <tr>
+	    		  <th align="left"><label>Allow Opera:</label></th>
+	    		  <td align="left"> <input name="op" type="checkbox" value="checked" <?php echo $op; ?>></td>
+	    	    </tr>
+	            <tr>
+	    		  <th align="left"><label>Allow Safari:</label></th>
+	    		  <td align="left"> <input name="sa" type="checkbox" value="checked" <?php echo $sa; ?>></td>
+	    	    </tr>
+	    	</tbody>
+	    </table>
+	    <p class="submit">
+	        <input type="submit" value="Save Settings" class="button-primary" id="submit" name="submit">
+	    </p>
     </form>
     <div class="clear"></div>
 </div>
@@ -277,64 +180,59 @@ function wpcsw_admin_page_settings() {
 // ============================================================================================================================
 # convert shortcode to html output
 function wpcsw_shortcode( $atts ) {
-    // get plugin options
-    $wpcsw_options = get_option( 'wpcsw_options' );
-
-    // get given file details
-    $file_key = -1;
-    foreach ( $wpcsw_options['files_list'] as $key => $file ) {
-        if ( $file['name'] == $atts['name'] ) {
-            $file_key = $key;
-            break;
-        }
-    }
-
-    // if given file name correct
-    if ( $file_key > -1 ) {
-        $file    = $wpcsw_options['files_list'][$key];
-        $options = $wpcsw_options['files_options'][$key];
-
-        // set shortcode arguments
-        extract( shortcode_atts( array(
-            'name'            => $options['name'],
-            'border'          => $options['border'],
-            'border_color'    => $options['border_color'],
-            'text_color'      => $options['text_color'],
-            'loading_message' => $options['loading_message'],
-            'key_safe'        => $options['key_safe'],
-            'capture_safe'    => $options['capture_safe'],
-            'menu_safe'       => $options['menu_safe'],
-            'remote_safe'     => $options['remote_safe'],
-            'hyperlink'       => $options['hyperlink'],
-            'target'          => $options['target'],
-            'postid'          => $options['postid'],
-            'plugin_folder'   => $wpcsw_options['settings']['plugin_folder'],
-            'mode'            => $wpcsw_options['settings']['mode'],
-            'ie'              => $wpcsw_options['settings']['ie'],
-            'ff'              => $wpcsw_options['settings']['ff'],
-            'ch'              => $wpcsw_options['settings']['ch'],
-            'op'              => $wpcsw_options['settings']['op'],
-            'sa'              => $wpcsw_options['settings']['sa'],
-        ), $atts ) );
-
-	// convert settings
-
-	if ($ch = 'checked') {$chrome = '1';}
-	if ($ff = 'checked') {$firefox = '1';}
-	if ($op = 'checked') {$opera = '1';}
-	if ($sa = 'checked') {$safari = '1';}
-	if ($ie = 'checked') {$msie = '1';}
-
+    global $post ;
+	$postid = $post->ID ;
+    $filename = $atts["name"] ;	
+    
+	if( !file_exists( WPCSW_UPLOAD_PATH . $filename ) )
+		return "<div style='padding:5px 10px;background-color:#fffbcc'><strong>File($filename) don't exist</strong></div>" ;
 	
+	$settings = wpcsw_get_first_class_settings() ;
+	
+	
+	// get plugin options
+    $wpcsw_options = get_option( 'wpcsw_settings' );
+	if( $wpcsw_options["settings"] )
+		$settings = wp_parse_args( $wpcsw_options["settings"], $settings );
+	
+	if( $wpcsw_options["classsetting"][$postid][$filename] )
+		$settings = wp_parse_args( $wpcsw_options["classsetting"][$postid][$filename], $settings );
+		
+	$settings = wp_parse_args( $atts, $settings );
+	
+	extract( $settings ) ;
+    
+	if ($ch == "checked") {$chrome = '1';}
+	if ($ff == "checked") {$firefox = '1';}
+	if ($nav == "checked") {$navigator = '1';}
+	if ($op == "checked") {$opera = '1';}
+	if ($sa == "checked") {$safari = '1';}
+	if ($ie == "checked") {$msie = '1';}
+	// $nav = ( $navigator == "checked" ) ? true : false ;
+
+	if( $key_safe == "checked" )$key_safe = 1 ;
+	if( $capture_safe == "checked" )$capture_safe = 1 ;
+	if( $menu_safe == "checked" )$menu_safe = 1 ;
+	if( $remote_safe == "checked" )$remote_safe = 1 ;
+	
+	$plugin_url = WPCSW_PLUGIN_URL ;
+	$plugin_path = WPCSW_PLUGIN_PATH ;
+	$upload_path = WPCSW_UPLOAD_PATH ;
+	$upload_url = WPCSW_UPLOAD_URL ;
+
         // display output
         $output = <<<html
-	<NOSCRIPT><meta http-equiv="refresh" content="0;url=/wp-content/plugins/wp-copysafe-web/download_javascript.html"></NOSCRIPT>
+	<NOSCRIPT><meta http-equiv="refresh" content="0;url={$plugin_url}download_javascript.html"></NOSCRIPT>
+	<script type="text/javascript">
+		var wpcsw_plugin_url = "$plugin_url" ;
+		var wpcsw_upload_url = "$upload_url" ;
+	</script>
 	 <script type="text/javascript">
-	<!-- hide JavaScript from non-JavaScript browsers
+		// hide JavaScript from non-JavaScript browsers
 		var m_bpDebugging = false;
 		var m_szMode = "$mode";
 		var m_szClassName = "$name";
-		var m_szImageFolder = "/wp-content/uploads/copysafe-web/";		//  path from root with / on both ends
+		var m_szImageFolder = "$upload_url";		//  path from root with / on both ends
 		var m_bpKeySafe = "$key_safe";
 		var m_bpCaptureSafe = "$capture_safe";
 		var m_bpMenuSafe = "$menu_safe";
@@ -344,7 +242,7 @@ function wpcsw_shortcode( $atts ) {
 
 		var m_bpChrome = "$chrome";	
 		var m_bpFx = "$firefox";			// all firefox browsers from version 5 and later
-		var m_bpNav = true;
+		var m_bpNav = "$navigator";
 		var m_bpOpera = "$opera";
 		var m_bpSafari = "$safari";
 		var m_bpMSIE = "$msie";
@@ -360,7 +258,7 @@ function wpcsw_shortcode( $atts ) {
 		var m_szDefaultMessage = "";
 
 		if (m_szMode == "debug") {
-		m_bpDebugging = true;
+			m_bpDebugging = true;
 		}
 		
 		if ((m_bpCaptureSafe == "1") && (m_bpKeySafe == "1")) {
@@ -380,28 +278,24 @@ function wpcsw_shortcode( $atts ) {
 			cswbody.setAttribute("onBeforePrint", "document.body.style.display = '';");
 			cswbody.setAttribute("onContextmenu", "return false;");
 			cswbody.setAttribute("onClick", "if(event.button==2||event.button==3){event.preventDefault();event.stopPropagation();return false;}");
-		}
-
-		// -->
-	 </script>
-	 <script src="/wp-content/plugins/wp-copysafe-web/wp-copysafe-web.js" type="text/javascript"></script>
-        <div>
-	 <script type="text/javascript">
-		<!-- hide JavaScript from non-JavaScript browsers
-		if ((m_szMode == "licensed") || (m_szMode == "debug")) {
-		insertCopysafeWeb("$name");
-		}
-		else {
-		document.writeln("<img src='/wp-content/plugins/wp-copysafe-web/images/copysafebutton.png' border='0' alt='Demo mode'>");
-		}
-		// -->
-	 </script>
-        </div>
+		}		
+	 </script>	 
+	 <script src="{$plugin_url}wp-copysafe-web.js" type="text/javascript"></script>
+     <div>
+		 <script type="text/javascript">
+			//hide JavaScript from non-JavaScript browsers
+			if ((m_szMode == "licensed") || (m_szMode == "debug")) {
+				insertCopysafeWeb("$name");
+			}
+			else {
+				document.writeln("<img src='{$plugin_url}images/copysafebutton.png' border='0' alt='Demo mode'>");
+			}			
+		 </script>	
+     </div>
 html;
 
        return $output;
-    }
-    else return;
+   
 }
 
 // ============================================================================================================================
@@ -444,25 +338,17 @@ function wpcsw_search_shortcode( $file_name ) {
 
 // ============================================================================================================================
 # delete file options
-function wpcsw_delete_file_options( $id, $file_name ) {
-    $wpcsw_options = get_option( 'wpcsw_options' );
-    $posts         = wpcsw_search_shortcode( $file_name );
-    $file_name     = preg_quote( $file_name,'/' );
-    if ($posts) {
-        foreach ( $posts as $post_id ) {
-            $post = get_post( $post_id );
-            $post->post_content = preg_replace( '/\[copysafe name="'.$file_name.'"\]\[\/copysafe\]/s', '', $post->post_content);
-            wp_update_post($post);
-
-            foreach ( $wpcsw_options['files_options'] as $key => $options ) {
-                if ( $options['postid'] == $id && $options['file_name'] == $file_name ) {
-                    unset($wpcsw_options['files_options'][$key]);
-                    break;
-                }
-            }
-        }
-        update_option( 'wpcsw_options', $wpcsw_options );
-    }
+function wpcsw_delete_file_options( $file_name ) {
+    $file_name = trim($file_name) ;
+   	$wpcsw_options = get_option( 'wpcsw_settings' );
+   	foreach ($wpcsw_options["classsetting"] as $k => $arr) {
+   		if($wpcsw_options["classsetting"][$k][$file_name]){
+   			unset($wpcsw_options["classsetting"][$k][$file_name]) ;
+   			if( !count($wpcsw_options["classsetting"][$k]) )
+   				unset($wpcsw_options["classsetting"][$k]) ;
+   		}   			
+   	}
+   	update_option( 'wpcsw_settings', $wpcsw_options );
 }
 
 // ============================================================================================================================
@@ -472,6 +358,7 @@ function wpcsw_media_buttons ( $context ) {
     // generate token for links
     $token = wp_create_nonce( 'wpcsw_token' );
     $url = plugin_dir_url( __FILE__ ).'media-upload.php?post_id='.$post_ID. '&wpcsw_token='.$token.'&TB_iframe=1';
+    $url = site_url('wp-load.php?wpcsw-popup=copysafe&post_id=' . $post_ID) ;
     return $context.="<a href='$url' class='thickbox' id='wpcsw_link' title='CopySafe Web'><img src='".plugin_dir_url( __FILE__ )."/images/copysafebutton.png'></a>";
 }
 
@@ -480,7 +367,7 @@ function wpcsw_media_buttons ( $context ) {
 # browser detector js file
 function wpcsw_load_js() {
     // load custom JS file
-	wp_enqueue_script( 'wpcsw-browser-detector', plugins_url( '/browser_detection.js', __FILE__), array( 'jquery' ) );
+	// wp_enqueue_script( 'wpcsw-browser-detector', plugins_url( '/browser_detection.js', __FILE__), array( 'jquery' ) );
 }
 
 // ============================================================================================================================
@@ -498,10 +385,48 @@ function wpcsw_admin_load_styles() {
 	wp_enqueue_style( 'wpcsw-style' );
 }
 
+function wpcsw_is_admin_postpage(){
+	$chk = false ;
+	$ppage = end(explode("/", $_SERVER["SCRIPT_NAME"])) ;
+	if($ppage == "post-new.php" || $ppage == "post.php" )return true ;
+}
+function wpcsw_includecss_js(){
+	if(!wpcsw_is_admin_postpage())return ;
+	global $wp_popup_upload_lib ;
+	if( $wp_popup_upload_lib )return ;
+	$wp_popup_upload_lib = true ;
+	echo "<link rel='stylesheet' href='http://code.jquery.com/ui/1.9.2/themes/redmond/jquery-ui.css' type='text/css' />" ;
+	echo "<link rel='stylesheet' href='" . WPSIW_PLUGIN_URL . "lib/uploadify/uploadify.css' type='text/css' />" ;
+	echo "<script type='text/javascript' src='" . WPSIW_PLUGIN_URL . "lib/uploadify/jquery.min.js'></script>" ;
+	echo "<script type='text/javascript' src='" . WPSIW_PLUGIN_URL . "lib/uploadify/jquery.uploadify.min.js'></script>" ;
+	echo "<script type='text/javascript' src='" . WPSIW_PLUGIN_URL . "lib/jquery.json-2.3.js'></script>" ;	
+	
+}
 // ============================================================================================================================
 # setup plugin
 function wpcsw_setup () {
-    // load js file
+    //----add codding---- 
+	$options = get_option("wpcsw_settings");	
+    define( 'WPCSW_PLUGIN_PATH', str_replace("\\", "/", plugin_dir_path(__FILE__) ) ); //use for include files to other files
+	define( 'WPCSW_PLUGIN_URL' , plugins_url( '/', __FILE__ ) );
+	define( 'WPCSW_UPLOAD_PATH', str_replace("\\", "/", ABSPATH . $options["settings"]["upload_path"] ) ); //use for include files to other files
+	define( 'WPCSW_UPLOAD_URL' , site_url( $options["settings"]["upload_path"] ) );
+	include(WPCSW_PLUGIN_PATH . "function.php") ; 
+	add_action('admin_head', 'wpcsw_includecss_js') ; 
+	add_action('wp_ajax_wpcsw_ajaxprocess', 'wpcsw_ajaxprocess' );
+	
+	if ( $_GET['page'] == 'wpcsw_list' && $_GET['cswfilename'] && $_GET['action'] == 'cswdel' ) {
+        wpcsw_delete_file_options( $_GET['cswfilename'] );
+        if( file_exists( WPCSW_UPLOAD_PATH . $_GET['cswfilename'] ) )unlink ( WPCSW_UPLOAD_PATH . $_GET['cswfilename'] );
+        wp_redirect( 'admin.php?page=wpcsw_list' ) ;
+	}
+		
+	if( isset($_GET['wpcsw-popup']) && $_GET["wpcsw-popup"] == "copysafe" ){			
+		require_once( WPCSW_PLUGIN_PATH . "popup_load.php" );
+	}	
+	//=============================	
+	
+	// load js file
     add_action( 'wp_enqueue_scripts', 'wpcsw_load_js' );
 
     // load admin CSS
@@ -528,30 +453,30 @@ function wpcsw_setup () {
 // ============================================================================================================================
 # runs when plugin activated
 function wpcsw_activate () {
-    // if this is first activation, setup plugin options
-    if ( !get_option( 'wpcsw_options' ) ) {
+     // if this is first activation, setup plugin options
+    if ( !get_option( 'wpcsw_settings' ) ) {
         // set plugin folder
-        $plugin_folder = plugin_dir_url( __FILE__ );
-        $plugin_folder = str_replace ( home_url(), '', $plugin_folder );
+	    $upload_dir = 'wp-content/uploads/copysafe-web/';
+	    	    
         // set default options
         $wpcsw_options['settings'] = array(
-                                        'plugin_folder' => "$plugin_folder",
-                                        'mode'          => "$mode",
-                                        'ie'            => "1",
-                                        'ff'            => "1",
-                                        'ch'            => "1",
-                                        'op'            => "1",
-                                        'sa'            => "1"
+                                        'upload_path' => $upload_dir,
+        					'max_size'	 => 100,
+                                        'mode'          => "demo",
+                                        'ie'            => "checked",
+                                        'ff'            => "checked",
+                                        'ch'            => "checked",
+        					'nav'		 => "checked",
+                                        'op'            => "checked",
+                                        'sa'            => "checked"
                                     );
-        $wpcsw_options['files_options'] = array();
-        $wpcsw_options['files_list']    = array();
-        add_option( 'wpcsw_options' , $wpcsw_options );
-    }
 
-    // create upload directory if it is not exist
-    $upload_dir = wp_upload_dir();
-    $upload_dir = trailingslashit( $upload_dir['basedir'] ).'copysafe-web/';
-    if ( !is_dir( $upload_dir ) ) mkdir( $upload_dir );
+        update_option( 'wpcsw_settings' , $wpcsw_options );
+        
+        $upload_dir = ABSPATH . $upload_dir ;
+        if ( !is_dir( $upload_dir ) ) mkdir( $upload_dir, 0, true );
+        // create upload directory if it is not exist
+    }
 }
 
 // ============================================================================================================================
@@ -564,21 +489,37 @@ function wpcsw_deactivate () {
 // ============================================================================================================================
 # runs when plugin deleted.
 function wpcsw_uninstall () {
-    // delete all uploaded files
-    $upload_dir = wp_upload_dir();
-    $upload_dir = trailingslashit( $upload_dir['basedir'] ).'copysafe-web';
-    $dir = scandir( $upload_dir );
-    foreach ( $dir as $file ) {
-        if ( $file != '.' || $file != '..' ) {
-            unlink( $upload_dir.'/'.$file );
-        }
-    }
+	// delete all uploaded files
+    $default_upload_dir = ABSPATH . 'wp-content/uploads/copysafe-web/';
+    if( is_dir($default_upload_dir) ){
+	    $dir = scandir( $default_upload_dir );
+	    foreach ( $dir as $file ) {
+	        if ( $file != '.' || $file != '..' ) {
+	            unlink( $default_upload_dir.$file );
+	        }
+	    }
+	    rmdir( $default_upload_dir );
+    }    
 
-    // delete upload directory
-    rmdir( $upload_dir );
+    // delete upload directory    
+    $options = get_option("wpcsw_settings");
+    
+    if( $options["settings"]["upload_path"] ){    	
+    	$upload_path = ABSPATH . $options["settings"]["upload_path"] ;    
+	    if( is_dir($upload_path) ){
+	    	$dir = scandir( $upload_path );
+		    foreach ( $dir as $file ) {
+		        if ( $file != '.' || $file != '..' ) {
+		            unlink( $upload_path . '/'.$file );
+		        }
+		    }	
+		    // delete upload directory
+		    rmdir( $upload_path );
+	    }    
+    }    
 
     // delete plugin options
-    delete_option( 'wpcsw_options' );
+    delete_option( 'wpcsw_settings' );
 
     // unregister short code
     remove_shortcode( 'copysafe' );

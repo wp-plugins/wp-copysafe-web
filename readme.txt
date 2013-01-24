@@ -84,6 +84,21 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 3. Here you can nominate the default settings that apply to all CopySafe Web pages.
 4. A file list can be displayed showing all CopySafe Web images that have been uploaded.
 
+== Changelog ==
+
+= 0.3 =
+* Added Netscape Navigator browser option in default settings.
+* Fixed bug with progress bar diisplayed when uploading.
+
+= 0.2 =
+* Added parameters to shorcode for editing of existing image inserts.
+* Same images can be used on multiple posts with unique settings.
+* Revised default settings options.
+* Revised functions to comply with CodePlex recommendations.
+
+= 0.1 =
+* First release.
+
 == About ==
 
 **About CopySafe Web**

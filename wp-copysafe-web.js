@@ -14,10 +14,9 @@
 // REDIRECTS
 
 var m_szLocation = document.location.href.replace(/&/g,'%26');	
-
-var m_szDownloadNo = "/wp-content/plugins/wp-copysafe-web/download_no.html";
-var m_szDownloadIE = "/wp-content/plugins/wp-copysafe-web/download_ie.html?ref=" + m_szLocation;
-var m_szDownloadFX = "/wp-content/plugins/wp-copysafe-web/download_fx.html?ref=" + m_szLocation;
+var m_szDownloadNo = wpcsw_plugin_url + "download_no.html";
+var m_szDownloadIE = wpcsw_plugin_url + "download_ie.html?ref=" + m_szLocation;
+var m_szDownloadFX = wpcsw_plugin_url + "download_fx.html?ref=" + m_szLocation;
 
 //====================================================
 //   Current version == 4.7.1.0
@@ -208,27 +207,21 @@ function insertCopysafeWeb(szImageName)
     insertCopysafeImage(nWidth, nHeight, "", "", nBorder, "", "", "", [szImageName]);
 }
 
-function insertCopysafeImage(nWidth, nHeight,
-    szTextColor,
-    szBorderColor,
-    nBorder,
-    szLoading,
-    szLink,
-    szTargetFrame,
-    arFrames)
-
+function insertCopysafeImage(nWidth, nHeight, szTextColor, szBorderColor, nBorder, szLoading, szLink, szTargetFrame, arFrames)
 {
-    if (m_bpDebugging == true)
+    
+	if (m_bpDebugging == true)
         { 
         document.writeln("<textarea rows='27' cols='80'>"); 
-        }       
+        } 
+
     if ((m_szPlugin == "DLL") || (m_szPlugin == "OCX"))
     {
     var szObjectInsert = "";
     
     if (m_szPlugin == "DLL")
     {      
-	szObjectInsert = "type='application/x-artistscope-firefox5' codebase='/wp-content/plugins/wp-copysafe-web/download_fx.php' ";
+    	szObjectInsert = "type='application/x-artistscope-firefox5' codebase='" + wpcsw_plugin_url + "download_fx.php' ";
         document.writeln("<ob" + "ject " + szObjectInsert + " width='" + nWidth + "' height='" + nHeight + "'>");
         if (m_bpProtectionLayer) {
         document.writeln("<param name='ProtectionActivated' value='OnProtectionActivated()' />");
