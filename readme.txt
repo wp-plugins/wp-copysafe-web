@@ -86,6 +86,9 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 0.4 =
+* Fixed bug apparent in WP 3.5.1
+
 = 0.3 =
 * Added Netscape Navigator browser option in default settings.
 * Fixed bug with progress bar diisplayed when uploading.

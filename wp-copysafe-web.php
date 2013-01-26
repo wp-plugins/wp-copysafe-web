@@ -4,7 +4,7 @@ Plugin Name: CopySafe Web
 Plugin URI: http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp
 Description: Add copy protection from Print Screen and screen capture. Copysafe Web uses encrypted images and domain lock to extend copy protection for all media displayed on a web page.
 Author: ArtistScope
-Version: 0.3
+Version: 0.4
 Author URI: http://www.artistscope.com/
 
 	Copyright 2012 ArtistScope Pty Limited
@@ -396,10 +396,10 @@ function wpcsw_includecss_js(){
 	if( $wp_popup_upload_lib )return ;
 	$wp_popup_upload_lib = true ;
 	echo "<link rel='stylesheet' href='http://code.jquery.com/ui/1.9.2/themes/redmond/jquery-ui.css' type='text/css' />" ;
-	echo "<link rel='stylesheet' href='" . WPSIW_PLUGIN_URL . "lib/uploadify/uploadify.css' type='text/css' />" ;
-	echo "<script type='text/javascript' src='" . WPSIW_PLUGIN_URL . "lib/uploadify/jquery.min.js'></script>" ;
-	echo "<script type='text/javascript' src='" . WPSIW_PLUGIN_URL . "lib/uploadify/jquery.uploadify.min.js'></script>" ;
-	echo "<script type='text/javascript' src='" . WPSIW_PLUGIN_URL . "lib/jquery.json-2.3.js'></script>" ;	
+	echo "<link rel='stylesheet' href='" . WPCSW_PLUGIN_URL . "lib/uploadify/uploadify.css' type='text/css' />" ;
+	echo "<script type='text/javascript' src='" . WPCSW_PLUGIN_URL . "lib/uploadify/jquery.min.js'></script>" ;
+	echo "<script type='text/javascript' src='" . WPCSW_PLUGIN_URL . "lib/uploadify/jquery.uploadify.min.js'></script>" ;
+	echo "<script type='text/javascript' src='" . WPCSW_PLUGIN_URL . "lib/jquery.json-2.3.js'></script>" ;	
 	
 }
 // ============================================================================================================================
