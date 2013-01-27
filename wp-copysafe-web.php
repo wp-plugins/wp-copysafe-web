@@ -96,15 +96,15 @@ function wpcsw_admin_page_settings() {
     	if(substr($upload_path, -1) != "/")$upload_path .= "/" ;
     	    	
         $wpcsw_options['settings'] = array(
-                                        'upload_path'  => $upload_path ,
-        					'max_size'	   => (int)$max_size,
-                                        'mode'         => $mode,
-                                        'ie'           => $ie,
-                                        'ff'           => $ff,
-                                        'ch'           => $ch,
-        					'nav'	   	=> $nav,
-                                        'op'           => $op,
-                                        'sa'           => $sa
+                                        'upload_path'	=> $upload_path ,
+        				'max_size'	=> (int)$max_size,
+                                        'mode'		=> $mode,
+                                        'ie'		=> $ie,
+                                        'ff'		=> $ff,
+                                        'ch'		=> $ch,
+        				'nav'	   	=> $nav,
+                                        'op'		=> $op,
+                                        'sa'		=> $sa
                                     );       
         
         $upload_path = ABSPATH . $upload_path ;
@@ -130,7 +130,7 @@ function wpcsw_admin_page_settings() {
 	        <p><strong>Default settings applied to all protected pages:</strong></p>
 	    	<tbody>
 	            <tr>
-	    		  <th align="left"><label>Plugin Folder:</label></th>
+	    		  <th align="left"><label>Upload Folder:</label></th>
 	    		  <td align="left"> <input value="<?php echo $upload_path; ?>" name="upload_path" class="regular-text code" type="text"></td>
 	    	    </tr>
 	    	    <tr>
@@ -381,7 +381,7 @@ function wpcsw_admin_load_js() {
 # admin page styles
 function wpcsw_admin_load_styles() {
     // register custom CSS file & load
-    wp_register_style( 'wpcsw-style', plugins_url( '/wp-copysafe-web.css', __FILE__ ) );
+    wp_register_style( 'wpcsw-style', plugins_url( 'wp-copysafe-web.css', __FILE__ ) );
 	wp_enqueue_style( 'wpcsw-style' );
 }
 
@@ -460,13 +460,13 @@ function wpcsw_activate () {
 	    	    
         // set default options
         $wpcsw_options['settings'] = array(
-                                        'upload_path' => $upload_dir,
-        					'max_size'	 => 100,
+                                        'upload_path'	=> $upload_dir,
+        				'max_size'	=> 100,
                                         'mode'          => "demo",
                                         'ie'            => "checked",
                                         'ff'            => "checked",
                                         'ch'            => "checked",
-        					'nav'		 => "checked",
+        				'nav'		=> "checked",
                                         'op'            => "checked",
                                         'sa'            => "checked"
                                     );

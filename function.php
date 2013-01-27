@@ -45,15 +45,15 @@ function wpcsw_get_parameters($param){
 	$remote_safe = ($remote_safe) ? 1 : 0 ;
 			
 	$params = 	" border='" . $border . "'" . 
-				" border_color='" . $border_color . "'" .
-				" key_safe='" . $key_safe . "'" .
-				" capture_safe='" . $capture_safe . "'" .
-				" menu_safe='" . $menu_safe . "'" .
-				" remote_safe='" . $remote_safe . "'" .	
-				" text_color='" . $text_color . "'" . 
-				" loading_message='" . $loading_message . "'" . 
-				" hyperlink='" . $hyperlink . "'" .	 
-				" target='" . $target . "'" ;
+			" border_color='" . $border_color . "'" .
+			" key_safe='" . $key_safe . "'" .
+			" capture_safe='" . $capture_safe . "'" .
+			" menu_safe='" . $menu_safe . "'" .
+			" remote_safe='" . $remote_safe . "'" .	
+			" text_color='" . $text_color . "'" . 
+			" loading_message='" . $loading_message . "'" . 
+			" hyperlink='" . $hyperlink . "'" .	 
+			" target='" . $target . "'" ;
 	return $params ;
 }
 
@@ -63,12 +63,12 @@ function wpcsw_get_first_class_settings(){
 				'capture_safe'    => 0,
 				'menu_safe'       => 0, 
 				'remote_safe'     => 0,		
-	            'border'          => 0,
-	            'border_color'    => '000000',
-	            'text_color'      => 'FFFFFF',
-	            'loading_message' => 'Image loading...',
-	            'hyperlink'       => '',
-		     	'target'          => "_top",			         
+	            		'border'          => 0,
+	            		'border_color'    => '000000',
+	            		'text_color'      => 'FFFFFF',
+	            		'loading_message' => 'Image loading...',
+	            		'hyperlink'       => '',
+		     		'target'          => "_top",			         
 			) ;
 	return 	$settings ;	
 }
@@ -117,14 +117,14 @@ function wpcsw_file_search($param){
 		
 	    $str = "<hr />
 	    		<div class='icon32' id='icon-file'><br /></div>
-		        <h2>Class Settings</h2>
+		        <h2>Page Settings</h2>
 		        <div>
 	    			<table cellpadding='0' cellspacing='0' border='0' >
 	  					<tbody id='wpcsw_setting_body'> 
 							  <tr>
 							    <td align='left' width='50'>&nbsp;</td>
-							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Border thickness in pixels. For no border set 0.' /></td>
-							    <td align='left'>Border:</td>
+							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Border thickness in pixels. For no border set 0.' /></td>						    
+    							<td align='left'>Border size:</td>
 							    <td> 
 							      <input name='border' id='wpcsw_border' type='text' value='$border' size='3' />
 							    </td>
@@ -145,26 +145,27 @@ function wpcsw_file_search($param){
 							      <input name='text_color' id='wpcsw_text_color' type='text' value='$text_color' size='7' />
 							    </td>
 							  </tr>
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to disable use of the keyboard when the class image loads.' /></td>
-							    <td align='left'>KeySafe:</td>
-							    <td> 
-							      <input name='key_safe' id='wpcsw_key_safe' type='checkbox' value='1' $key_safe>
-							    </td>
-							  </tr>
-							  <tr>
+							<tr>
 							    <td align='left'>&nbsp;</td>
 							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to disable Printscreen and screen capture when the class image loads.'></td>
-							    <td align='left'>CaptureSafe:</td>
+							    <td align='left'>Prevent Capture:</td>
 							    <td> 
 							      <input name='capture_safe' type='checkbox' value='1' $capture_safe>
 							    </td>
 							  </tr>
 							  <tr>
 							    <td align='left'>&nbsp;</td>
+							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to disable use of the keyboard when the class image loads.' /></td>
+							    <td align='left'>Prevent Keyboard:</td>
+							    <td> 
+							      <input name='key_safe' id='wpcsw_key_safe' type='checkbox' value='1' $key_safe>
+							    </td>
+							  </tr>
+							  
+							  <tr>
+							    <td align='left'>&nbsp;</td>
 							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to disable use of browser menus. This option is browser dependent.'></td>
-							    <td align='left'>MenuSafe:</td>
+							    <td align='left'>Prevent Menus:</td>
 							    <td> 
 							      <input name='menu_safe' type='checkbox' value='1' $menu_safe>
 							    </td>
@@ -172,7 +173,7 @@ function wpcsw_file_search($param){
 							  <tr>
 							    <td align='left'>&nbsp;</td>
 							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to prevent viewing by remote or virtual computers when the class image loads.'></td>
-							    <td align='left'>RemoteSafe:</td>
+							    <td align='left'>Prevent Remote:</td>
 							    <td> 
 							      <input name='remote_safe' type='checkbox' value='1' $remote_safe>
 							    </td>
@@ -229,17 +230,17 @@ function wpcsw_setting_save($param){
 	if(!is_array($wpcsw_settings))$wpcsw_settings = array() ; 
 	
 	$datas = array ('border'          => "$border",
-                    'border_color'    => "$border_color",
-                    'text_color'      => "$text_color",
-                    'loading_message' => "$loading_message",
-                    'key_safe'        => "$key_safe",
-                    'capture_safe'    => "$capture_safe",
-					'menu_safe'       => "$menu_safe",
-					'remote_safe'     => "$remote_safe",
-                    'hyperlink'       => "$hyperlink",
-                    'target'          => "$target",
-                    'postid'          => "$postid",
-                    'name'            => "$name"
+			'border_color'    => "$border_color",
+			'text_color'      => "$text_color",
+			'loading_message' => "$loading_message",
+			'key_safe'        => "$key_safe",
+			'capture_safe'    => "$capture_safe",
+			'menu_safe'       => "$menu_safe",
+			'remote_safe'     => "$remote_safe",
+			'hyperlink'       => "$hyperlink",
+			'target'          => "$target",
+			'postid'          => "$postid",
+			'name'            => "$name"
              );
              
     
@@ -280,10 +281,10 @@ function _get_wpcsw_uploadfile_list(){
         $file_date = date("n/j/Y g:h A", $file_date);
                 
 		$listdata[] = array(
-							"filename" => $file_name,
-							"filesize" => $file_size,
-							"filedate" => $file_date
-						) ;
+					"filename" => $file_name,
+					"filesize" => $file_size,
+					"filedate" => $file_date
+				) ;
 	}
 	return $listdata ;
 }
