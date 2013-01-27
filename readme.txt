@@ -1,4 +1,4 @@
-=== WP Plugin For CopySafe Web Protection ===
+=== CopySafe Web Protection ===
 
 Contributors: ArtistScope
 Donate link: http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp
@@ -87,11 +87,11 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 == Changelog ==
 
 = 0.4 =
-* Fixed bug apparent in WP 3.5.1
+* Clean up and clarified definitions used in settings.
 
 = 0.3 =
 * Added Netscape Navigator browser option in default settings.
-* Fixed bug with progress bar diisplayed when uploading.
+* Fixed bug with progress bar displayed when uploading.
 
 = 0.2 =
 * Added parameters to shorcode for editing of existing image inserts.
