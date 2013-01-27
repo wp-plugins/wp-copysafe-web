@@ -20,7 +20,7 @@
             author : 'ArtistScope',
             authorurl : 'http://www.artistscope.com/',
             infourl : 'http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp',
-            version : "0.2"
+            version : "0.3"
          };
       }
    });
