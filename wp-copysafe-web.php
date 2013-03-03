@@ -288,7 +288,7 @@ function wpcsw_shortcode( $atts ) {
 				insertCopysafeWeb("$name");
 			}
 			else {
-				document.writeln("<img src='{$plugin_url}images/copysafebutton.png' border='0' alt='Demo mode'>");
+				document.writeln("<img src='{$plugin_url}images/image_placeholder.jpg' border='0' alt='Demo mode'>");
 			}			
 		 </script>	
      </div>
@@ -397,9 +397,13 @@ function wpcsw_includecss_js(){
 	$wp_popup_upload_lib = true ;
 	echo "<link rel='stylesheet' href='http://code.jquery.com/ui/1.9.2/themes/redmond/jquery-ui.css' type='text/css' />" ;
 	echo "<link rel='stylesheet' href='" . WPCSW_PLUGIN_URL . "lib/uploadify/uploadify.css' type='text/css' />" ;
-	echo "<script type='text/javascript' src='" . WPCSW_PLUGIN_URL . "lib/uploadify/jquery.min.js'></script>" ;
-	echo "<script type='text/javascript' src='" . WPCSW_PLUGIN_URL . "lib/uploadify/jquery.uploadify.min.js'></script>" ;
-	echo "<script type='text/javascript' src='" . WPCSW_PLUGIN_URL . "lib/jquery.json-2.3.js'></script>" ;	
+	// echo "<script type='text/javascript' src='" . WPCSW_PLUGIN_URL . "lib/uploadify/jquery.min.js'></script>" ;
+	// echo "<script type='text/javascript' src='" . WPCSW_PLUGIN_URL . "lib/uploadify/jquery.uploadify.min.js'></script>" ;
+	// echo "<script type='text/javascript' src='" . WPCSW_PLUGIN_URL . "lib/jquery.json-2.3.js'></script>" ;	
+	
+	wp_enqueue_script( 'jquery');
+	wp_enqueue_script( 'uploadify.min', false, array('jquery'));
+	wp_enqueue_script( 'jquery.json', false, array('jquery'));	
 	
 }
 // ============================================================================================================================
@@ -448,6 +452,9 @@ function wpcsw_setup () {
             add_action( 'media_buttons_context', 'wpcsw_media_buttons' );
         }
     }
+    
+	wp_register_script( 'uploadify.min', WPCSW_PLUGIN_URL . 'lib/uploadify/jquery.uploadify.min.js');
+	wp_register_script( 'jquery.json', WPCSW_PLUGIN_URL . 'lib/jquery.json-2.3.js');
 }
 
 // ============================================================================================================================
