@@ -86,6 +86,9 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 0.5 =
+* Updated for JQuery 1.8
+
 = 0.4 =
 * Clean up and clarified definitions used in settings.
 
