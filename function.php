@@ -1,4 +1,5 @@
 <?php
+
 function wpcsw_ajaxprocess(){
 	if( $_POST["fucname"] == "file_upload" ){
 		$msg = wpcsw_file_upload($_POST) ;
@@ -44,7 +45,9 @@ function wpcsw_get_parameters($param){
 	$menu_safe = ($menu_safe) ? 1 : 0 ;
 	$remote_safe = ($remote_safe) ? 1 : 0 ;
 			
-	$params = 	" border='" . $border . "'" . 
+	$params = " width='" . $width . "'" .
+		" height='" . $height . "'" .
+		" border='" . $border . "'" .
 			" border_color='" . $border_color . "'" .
 			" key_safe='" . $key_safe . "'" .
 			" capture_safe='" . $capture_safe . "'" .
@@ -103,9 +106,11 @@ function wpcsw_file_search($param){
 
     	$result = false ;
     	foreach ($files as $file)
-    		if( $search == trim($file["filename"]) )$result = true ;
+			if ($search == trim($file["filename"]))
+				$result = true;
     	    	
-		if( !$result )return "<hr /><h2>No found file</h2>" ;
+		if (!$result)
+			return "<hr /><h2>No found file</h2>";
 				
 		$file_options  = wpcsw_get_first_class_settings() ;
 	                    
@@ -121,6 +126,22 @@ function wpcsw_file_search($param){
 		        <div>
 	    			<table cellpadding='0' cellspacing='0' border='0' >
 	  					<tbody id='wpcsw_setting_body'> 
+							  <tr>
+							    <td align='left' width='50'>&nbsp;</td>
+							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Width in pixels. For auto width set 0.' /></td>						    
+							    <td align='left'>Custom Width:</td>
+							    <td> 
+							      <input name='width' id='wpcsw_width' type='text' value='$width' size='3' />
+							    </td>
+							  </tr>
+							  <tr>
+							    <td align='left' width='50'>&nbsp;</td>
+							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Height in pixels. For auto height set 0.' /></td>						    
+							    <td align='left'>Custom Height:</td>
+							    <td> 
+							      <input name='height' id='wpcsw_height' type='text' value='$height' size='3' />
+							    </td>
+							  </tr>
 							  <tr>
 							    <td align='left' width='50'>&nbsp;</td>
 							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Border thickness in pixels. For no border set 0.' /></td>						    
@@ -227,9 +248,12 @@ function wpcsw_setting_save($param){
     $loading_message = ( empty( $loading_message ) ? '' : esc_attr( $loading_message ) );
 	
     $wpcsw_settings = get_option( 'wpcsw_settings' ); 
-	if(!is_array($wpcsw_settings))$wpcsw_settings = array() ; 
+	if (!is_array($wpcsw_settings))
+		$wpcsw_settings = array();
 	
 	$datas = array ('border'          => "$border",
+	    "width" => "$width",
+	    "height" => "$height",
 			'border_color'    => "$border_color",
 			'text_color'      => "$text_color",
 			'loading_message' => "$loading_message",
@@ -260,11 +284,14 @@ function _get_wpcsw_uploadfile_list(){
 	$file_list = scandir( WPCSW_UPLOAD_PATH );
 	
 	foreach ($file_list as $file) {
-		if( $file == "." || $file == "..")continue ;		
+		if ($file == "." || $file == "..")
+			continue;
 		$file_path = WPCSW_UPLOAD_PATH . $file ;		
-		if( filetype($file_path) != "file" )continue ; 
+		if (filetype($file_path) != "file")
+			continue;
 		$ext = end(explode('.', $file));
-		if( $ext != "class" )continue ;
+		if ($ext != "class")
+			continue;
 		
 		$file_path = WPCSW_UPLOAD_PATH . $file ;
 		$file_name = $file;

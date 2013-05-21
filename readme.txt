@@ -86,8 +86,12 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 0.7 =
+* Added option to manually set image width and height.
+* If image size is not set then the filename dimensions are used.
+
 = 0.6 =
-* Removed dependency on wp-load.php
+* Removed dependency on wp-load.php.
 
 = 0.5 =
 * Updated for JQuery 1.8

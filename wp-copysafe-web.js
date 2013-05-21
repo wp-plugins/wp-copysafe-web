@@ -1,7 +1,7 @@
 <!-- hide JavaScript from non-JavaScript browsers
 
 	//  WP Copysafe Web - Version 4.7.1.0
-	//  Copyright (c) 1998-2012 ArtistScope. All Rights Reserved.
+	//  Copyright (c) 1998-2013 ArtistScope. All Rights Reserved.
 	//  www.artistscope.com
 	//
 	// The Copysafe Plugin is supported across all Windows since XP
@@ -159,14 +159,22 @@ else
 
 function bool2String(bValue)
 {
-    if (bValue == true) {return "1";}
-    else {return "0";}
+	if (bValue == true) {
+		return "1";
+	}
+	else {
+		return "0";
+	}
 }
 
 function paramValue(szValue, szDefault)
 {
-    if (szValue.toString().length > 0) {return szValue;}
-    else {return szDefault;}
+	if (szValue.toString().length > 0) {
+		return szValue;
+	}
+	else {
+		return szDefault;
+	}
 }
 
 function expandNumber(nValue, nLength)
@@ -180,7 +188,7 @@ function expandNumber(nValue, nLength)
 
 // The copysafe-insert functions
 
-function insertCopysafeWeb(szImageName)
+function insertCopysafeWeb(szImageName, szcWidth, szcHeight)
 {
     // Extract the image width and height from the image name (example name: zulu580_0580_0386_C.class)
 
@@ -191,12 +199,21 @@ function insertCopysafeWeb(szImageName)
         return;
     }
 
+	if (!szcWidth) {
     var szWidth = szImageName.substring(nIndex - 9, nIndex - 5);
+	} else {
+		var szWidth = szcWidth;
+	}
+	if (!szcHeight) {
     var szHeight = szImageName.substring(nIndex - 4, nIndex);
+	} else {
+		var szHeight = szcHeight;
+	}
 
     var nWidth = szWidth * 1;
     var nHeight = szHeight * 1;
 
+	alert(nWidth + " " + nHeight);
 
     // Expand width and height to allow for border
 
@@ -255,7 +272,9 @@ function insertCopysafeImage(nWidth, nHeight, szTextColor, szBorderColor, nBorde
     document.writeln("</ob" + "ject />"); 
 
     if (m_bpDebugging == true)
-        { document.writeln("</textarea />"); }
+		{
+			document.writeln("</textarea />");
+		}
     }
 }
 // -->
