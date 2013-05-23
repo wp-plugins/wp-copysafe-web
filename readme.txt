@@ -86,6 +86,9 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 0.8 =
+* Added allowance for Firefox 20 and later
+
 = 0.7 =
 * Added option to manually set image width and height.
 * If image size is not set then the filename dimensions are used.
