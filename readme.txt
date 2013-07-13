@@ -37,7 +37,7 @@ More information and online demos protecting a variety of different media can be
 
 You can see this plugin and our other WP [copy protection plugins] in action on our WordPress demo site.
 
-** Implementation **
+**Implementation**
 
 Click on the [C] media button above a post to upload and embed CopySafe Web encrypted images in your current post or page. When inserting a protected image object, the necessary shortcode is automatically inserted into the post editor. 
 
@@ -48,7 +48,7 @@ You can upload new image class documents or select from a list of already upload
 * Enable or disable use of browser menus
 * Enable or disable use of the keyboard
 
-For more information visit the [CopySafe Web Protection](http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp) plugin page at ArtistScope.
+For more information visit the [CopySafe Web Protection](http://www.artistscope.com/docs/CopySafeWeb_WordPress_Installation.pdf) plugin page at ArtistScope.
 
 == Installation ==
 
@@ -60,6 +60,8 @@ This section describes how to install the plugin and get it working.
 4. Set write permissions on this new folder
 5. Check and modify the default settings to suit your pages
 6. You can now add CopySafe Web images using its media button above the post editor
+
+Click to download the [CopySafe Web Installation Guide](http://www.artistscope.com/docs/CopySafeWeb_WordPress_Installation.pdf)
 
 If you do not have any CopySafe Web encrypted images for testing, you can download this [test file](http://www.artistscope.com/download/cs/icon_0020_0020_C.zip) which satisfies the file type criteria. It is licensed for "localhost" so you can activate capture protection on your test server.
 
