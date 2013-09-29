@@ -88,6 +88,10 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 0.9 =
+* Added support for Windows 8.1
+* Plugin version incremented to 4.7.2.0
+
 = 0.8 =
 * Added allowance for Firefox 20 and later
 
