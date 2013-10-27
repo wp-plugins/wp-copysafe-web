@@ -4,7 +4,7 @@ Contributors: ArtistScope
 Donate link: http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp
 Tags: protect, secure, prevent
 Requires at least: 3.0.1
-Tested up to: 3.5
+Tested up to: 3.7
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -91,6 +91,7 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 = 0.9 =
 * Added support for Windows 8.1
 * Plugin version incremented to 4.7.2.0
+* Tested and verified for WP 3.7.1
 
 = 0.8 =
 * Added allowance for Firefox 20 and later
