@@ -45,7 +45,7 @@ var m_bWinxp = ((m_szAgent.indexOf("windows nt 5.1")!=-1) || (m_szAgent.indexOf(
 var m_bWin2k3 = (m_szAgent.indexOf("windows nt 5.2")!=-1);	
 var m_bVista = (m_szAgent.indexOf("windows nt 6.0")!=-1);
 var m_bWindows7 = (m_szAgent.indexOf("windows nt 6.1")!=-1);
-var m_bWindows8 = (m_szAgent.indexOf("windows nt 6.2")!=-1);
+var m_bWindows8 = ((m_szAgent.indexOf("windows nt 6.2")!=-1) || (m_szAgent.indexOf("windows nt 6.3")!=-1));
 var m_bWindows = (((m_bWin2k) || (m_bWinxp) || (m_bWin2k3) || (m_bVista) || (m_bWindows7) || (m_bWindows8)) && ((m_bWin32) || (m_bWin64)));
 
 var m_bOpera = ((m_szAgent.indexOf("opera")!=-1) && !!(window.opera && window.opera.version) && (m_bpOpera));
@@ -57,7 +57,7 @@ var m_bChrome = ((m_szAgent.indexOf("chrome")!=-1) && !!(window.chrome && chrome
 var m_bNav = ((m_szAgent.indexOf("navigator")!=-1) && (m_bpNav));
 
 var m_bNetscape = ((m_bChrome) || (m_bFirefox) || (m_bNav) || (m_bOpera) || (m_bSafari));
-var m_bMicrosoft = ((m_szAgent.indexOf("msie")!=-1) && (/*@cc_on!@*/false || testCSS("msTransform")) && (m_bpMSIE)); 
+var m_bMicrosoft = (((m_szAgent.indexOf("msie")!=-1) || (m_szAgent.indexOf("trident")!=-1)) && (m_bpMSIE)); 
 
 function testCSS(prop) {
     return prop in document.documentElement.style;

@@ -88,6 +88,9 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 1.0 =
+* Fixed detection bug for Internet Explorer 11 and Windows 8.1
+
 = 0.9 =
 * Added support for Windows 8.1
 * Plugin version incremented to 4.7.2.0
