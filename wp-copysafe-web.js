@@ -213,7 +213,7 @@ function insertCopysafeWeb(szImageName, szcWidth, szcHeight)
     var nWidth = szWidth * 1;
     var nHeight = szHeight * 1;
 
-	alert(nWidth + " " + nHeight);
+	// alert(nWidth + " " + nHeight);
 
     // Expand width and height to allow for border
 
