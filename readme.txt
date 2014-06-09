@@ -89,7 +89,7 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 == Changelog ==
 
 = 1.2 =
-* Fixed security flaw in upload that was permitted by WordPress.
+* Fixed security flaw in upload function.
 * Tested and aproved for WordPress 3.9.
 
 = 1.1 =
