@@ -88,6 +88,9 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 1.3 =
+* Added login requirements to upload functions.
+
 = 1.2 =
 * Fixed security flaw in upload function.
 * Tested and aproved for WordPress 3.9.

@@ -1,7 +1,7 @@
 <!-- hide JavaScript from non-JavaScript browsers
 
 	//  WP Copysafe Web - Version 4.7.2.0
-	//  Copyright (c) 1998-2013 ArtistScope. All Rights Reserved.
+	//  Copyright (c) 1998-2014 ArtistScope. All Rights Reserved.
 	//  www.artistscope.com
 	//
 	// The Copysafe Plugin is supported across all Windows since XP

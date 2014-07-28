@@ -4,10 +4,10 @@ Plugin Name: CopySafe Web
 Plugin URI: http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp
 Description: Add copy protection from Print Screen and screen capture. Copysafe Web uses encrypted images and domain lock to extend copy protection for all media displayed on a web page.
 Author: ArtistScope
-Version: 1.2
+Version: 1.3
 Author URI: http://www.artistscope.com/
 
-	Copyright 2013 ArtistScope Pty Limited
+	Copyright 2014 ArtistScope Pty Limited
 
 
 	This program is free software: you can redistribute it and/or modify
@@ -433,6 +433,8 @@ function wpcsw_setup () {
 	define( 'WPCSW_PLUGIN_URL' , plugins_url( '/', __FILE__ ) );
 	define( 'WPCSW_UPLOAD_PATH', str_replace("\\", "/", ABSPATH . $options["settings"]["upload_path"] ) ); //use for include files to other files
 	define( 'WPCSW_UPLOAD_URL' , site_url( $options["settings"]["upload_path"] ) );
+
+	include(WPCSW_PLUGIN_PATH . "login-status.php");
 	include(WPCSW_PLUGIN_PATH . "function.php") ; 
 	add_action('admin_head', 'wpcsw_includecss_js') ; 
 	add_action('wp_ajax_wpcsw_ajaxprocess', 'wpcsw_ajaxprocess' );
