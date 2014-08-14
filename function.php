@@ -84,7 +84,8 @@ function wpcsw_file_upload($param){
                           3 => __( "The uploaded file was only partially uploaded" ),
                           4 => __( "No file was uploaded" ),
                           6 => __( "Missing a temporary folder" ),
-                          7 => __( "Upload directory is not writable" )
+                          7 => __( "Upload directory is not writable" ),
+                          8 => __( "User not logged in" )
                    );
                    
 	if ( $file_error == 0 ){
@@ -127,7 +128,7 @@ function wpcsw_file_search($param){
 	    			<table cellpadding='0' cellspacing='0' border='0' >
 	  					<tbody id='wpcsw_setting_body'> 
 							  <tr>
-							    <td align='left' width='50'>&nbsp;</td>
+							    <td align='left' width='10'>&nbsp;</td>
 							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Width in pixels. For auto width set 0.' /></td>						    
 							    <td align='left'>Custom Width:</td>
 							    <td> 
@@ -135,7 +136,7 @@ function wpcsw_file_search($param){
 							    </td>
 							  </tr>
 							  <tr>
-							    <td align='left' width='50'>&nbsp;</td>
+							    <td align='left'>&nbsp;</td>
 							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Height in pixels. For auto height set 0.' /></td>						    
 							    <td align='left'>Custom Height:</td>
 							    <td> 
@@ -143,7 +144,7 @@ function wpcsw_file_search($param){
 							    </td>
 							  </tr>
 							  <tr>
-							    <td align='left' width='50'>&nbsp;</td>
+							    <td align='left'>&nbsp;</td>
 							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Border thickness in pixels. For no border set 0.' /></td>						    
     							<td align='left'>Border size:</td>
 							    <td> 
@@ -220,7 +221,7 @@ function wpcsw_file_search($param){
 							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Set the target frame for the hyperlink, for example _top' /></td>
 							    <td align='left'>Target frame:</td>
 							    <td> 
-							      <input value='$target' name='target' id='wpcsw_target' type='text' size='15' />
+							      <input value='$target' name='target' id='wpcsw_target' type='text' size='10' />
 							    </td>
 							  </tr>
 						</tbody> 

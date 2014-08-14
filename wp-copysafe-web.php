@@ -4,7 +4,7 @@ Plugin Name: CopySafe Web
 Plugin URI: http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp
 Description: Add copy protection from Print Screen and screen capture. Copysafe Web uses encrypted images and domain lock to extend copy protection for all media displayed on a web page.
 Author: ArtistScope
-Version: 1.3
+Version: 1.4
 Author URI: http://www.artistscope.com/
 
 	Copyright 2014 ArtistScope Pty Limited
@@ -97,6 +97,7 @@ function wpcsw_admin_page_settings() {
 			$upload_path .= "/";
     	    	
         $wpcsw_options['settings'] = array(
+		    'admin_only' => $admin_only,
                                         'upload_path'	=> $upload_path ,
         				'max_size'	=> (int)$max_size,
                                         'mode'		=> $mode,
@@ -130,6 +131,10 @@ function wpcsw_admin_page_settings() {
 	    <table class="form-table">
 	        <p><strong>Default settings applied to all protected pages:</strong></p>
 	    	<tbody>
+	            <tr>
+	    		  <th align="left"><label>Allow Admin Only:</label></th>
+	    		  <td align="left"> <input name="admin_only" type="checkbox" value="checked" <?php echo $admin_only; ?>></td>
+	    	    </tr>
 	            <tr>
 	    		  <th align="left"><label>Upload Folder:</label></th>
 	    		  <td align="left"> <input value="<?php echo $upload_path; ?>" name="upload_path" class="regular-text code" type="text"></td>
@@ -488,6 +493,7 @@ function wpcsw_activate () {
 	    	    
         // set default options
         $wpcsw_options['settings'] = array(
+		    'admin_only' => "checked",
                                         'upload_path'	=> $upload_dir,
         				'max_size'	=> 100,
                                         'mode'          => "demo",

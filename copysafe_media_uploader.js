@@ -187,6 +187,7 @@ jQuery(document).ready(function() {
 		jQuery.post(ajaxurl, ajaxdata, function( param ) {
 			jQuery( "#wpcsw_message" ).html(param);
 			wpcsw_process_setting("setting", "end") ;
+			jQuery('a.sendtoeditor').click();
 		});
 	});
 	

@@ -88,6 +88,16 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 1.4 =
+* Tested and verified on WorPress version 3.9.2
+* Added alternative user check in case session logging not supported by webhost.
+* Added settings option to allow uploads by admin only.
+* Upload will progress only on same host IP.
+* Referrer user agent must be Shockwave Flash
+* Referrer url must match with the same script name.
+* Save settings page options altered for show in smaller screens.
+* No need to click "Insert File to editor" button after Save button clicked.
+
 = 1.3 =
 * Added login requirements to upload functions.
 
