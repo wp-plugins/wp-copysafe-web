@@ -126,106 +126,87 @@ function wpcsw_file_search($param){
 		        <h2>Page Settings</h2>
 		        <div>
 	    			<table cellpadding='0' cellspacing='0' border='0' >
-	  					<tbody id='wpcsw_setting_body'> 
-							  <tr>
-							    <td align='left' width='10'>&nbsp;</td>
-							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Width in pixels. For auto width set 0.' /></td>						    
-							    <td align='left'>Custom Width:</td>
-							    <td> 
-							      <input name='width' id='wpcsw_width' type='text' value='$width' size='3' />
-							    </td>
-							  </tr>
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Height in pixels. For auto height set 0.' /></td>						    
-							    <td align='left'>Custom Height:</td>
-							    <td> 
-							      <input name='height' id='wpcsw_height' type='text' value='$height' size='3' />
-							    </td>
-							  </tr>
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Border thickness in pixels. For no border set 0.' /></td>						    
-    							<td align='left'>Border size:</td>
-							    <td> 
-							      <input name='border' id='wpcsw_border' type='text' value='$border' size='3' />
-							    </td>
-							  </tr>
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Color of the border and image backround area. For example use FFFFFF for white and 000000 is for black... without the # symbol.' /></td>
-							    <td align='left'>Border color:</td>
-							    <td> 
-							      <input name='border_color' id='wpcsw_border_color' type='text' value='$border_color' size='7' />
-							    </td>
-							  </tr>
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Color of the text message that is displayed in the image area sas the image downloads.' /></td>
-							    <td align='left'>Text color:</td>
-							    <td> 
-							      <input name='text_color' id='wpcsw_text_color' type='text' value='$text_color' size='7' />
-							    </td>
-							  </tr>
-							<tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to disable Printscreen and screen capture when the class image loads.'></td>
-							    <td align='left'>Prevent Capture:</td>
-							    <td> 
-							      <input name='capture_safe' type='checkbox' value='1' $capture_safe>
-							    </td>
-							  </tr>
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to disable use of the keyboard when the class image loads.' /></td>
-							    <td align='left'>Prevent Keyboard:</td>
-							    <td> 
-							      <input name='key_safe' id='wpcsw_key_safe' type='checkbox' value='1' $key_safe>
-							    </td>
-							  </tr>
-							  
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to disable use of browser menus. This option is browser dependent.'></td>
-							    <td align='left'>Prevent Menus:</td>
-							    <td> 
-							      <input name='menu_safe' type='checkbox' value='1' $menu_safe>
-							    </td>
-							  </tr>
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to prevent viewing by remote or virtual computers when the class image loads.'></td>
-							    <td align='left'>Prevent Remote:</td>
-							    <td> 
-							      <input name='remote_safe' type='checkbox' value='1' $remote_safe>
-							    </td>
-							  </tr>
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Set the message to display as this class image loads.' /></td>
-							    <td align='left'>Loading message:&nbsp;</td>
-							    <td> 
-							      <input name='loading_message' id='wpcsw_loading_message' type='text' value='$loading_message' size='30' />
-							    </td>
-							  </tr>
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Add a link to another page activated by clciking on the image, or leave blank for no link.' /></td>
-							    <td align='left'>Hyperlink:</td>
-							    <td> 
-							      <input value='$hyperlink' name='hyperlink' id='wpcsw_hyperlink' type='text' size='30' />
-							    </td>
-							  </tr>
-							  <tr>
-							    <td align='left'>&nbsp;</td>
-							    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Set the target frame for the hyperlink, for example _top' /></td>
-							    <td align='left'>Target frame:</td>
-							    <td> 
-							      <input value='$target' name='target' id='wpcsw_target' type='text' size='10' />
-							    </td>
-							  </tr>
-						</tbody> 
-					</table>
+  <tbody id='wpcsw_setting_body'> 
+  <tr> 
+    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Width in pixels. For auto width set 0.' /></td>
+    <td align='left' nowrap>Custom Width:</td>
+    <td> 
+      <input name='width' id='wpcsw_width' type='text' value='$width' size='3' />
+    </td>
+    <td align='left'>&nbsp;</td>
+    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Height in pixels. For auto height set 0.' /></td>
+    <td align='left' nowrap>Custom Height:</td>
+    <td> 
+      <input name='height' id='wpcsw_height' type='text' value='$height' size='3' />
+    </td>
+  </tr>
+  <tr> 
+    <td align='left' width='40'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Border thickness in pixels. For no border set 0.' /></td>
+    <td align='left'>Border size:</td>
+    <td> 
+      <input name='border' id='wpcsw_border' type='text' value='$border' size='3' />
+    </td>
+    <td align='left'>&nbsp;</td>
+    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Color of the border and image backround area. For example use FFFFFF for white and 000000 is for black... without the # symbol.' /></td>
+    <td align='left'>Border color:</td>
+    <td> 
+      <input name='border_color' id='wpcsw_border_color' type='text' value='$border_color' size='7' />
+    </td>
+  </tr>
+  <tr> 
+    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to disable Printscreen and screen capture when the class image loads.'></td>
+    <td align='left' nowrap>Prevent Capture:</td>
+    <td> 
+      <input name='capture_safe' type='checkbox' value='1' $capture_safe>
+    </td>
+    <td align='left'>&nbsp;</td>
+    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to disable use of the keyboard when the class image loads.' /></td>
+    <td align='left' nowrap>Prevent Keyboard:</td>
+    <td> 
+      <input name='key_safe' id='wpcsw_key_safe' type='checkbox' value='1' $key_safe>
+    </td>
+  </tr>
+  <tr> 
+    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to disable use of browser menus. This option is browser dependent.'></td>
+    <td align='left' nowrap>Prevent Menus:</td>
+    <td> 
+      <input name='menu_safe' type='checkbox' value='1' $menu_safe>
+    </td>
+    <td align='left'>&nbsp;</td>
+    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Check this box to prevent viewing by remote or virtual computers when the class image loads.'></td>
+    <td align='left' nowrap>Prevent Remote:</td>
+    <td> 
+      <input name='remote_safe' type='checkbox' value='1' $remote_safe>
+    </td>
+  </tr>
+  <tr> 
+    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Color of the text message that is displayed in the image area sas the image downloads.' /></td>
+    <td align='left' nowrap>Text color:</td>
+    <td> 
+      <input name='text_color' id='wpcsw_text_color' type='text' value='$text_color' size='7' />
+    </td>
+    <td align='left'>&nbsp;</td>
+    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Set the message to display as this class image loads.' /></td>
+    <td align='left' nowrap>Loading message:&nbsp;</td>
+    <td> 
+      <input name='loading_message' id='wpcsw_loading_message' type='text' value='$loading_message' size='20' />
+    </td>
+  </tr>
+  <tr> 
+    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Set the target frame for the hyperlink, for example _top' /></td>
+    <td align='left' nowrap>Target frame:</td>
+    <td> 
+      <input value='$target' name='target' id='wpcsw_target' type='text' size='10' />
+    </td>
+    <td align='left'>&nbsp;</td>
+    <td align='left'><img src='" . WPCSW_PLUGIN_URL . "images/help-24-30.png' border='0' alt='Add a link to another page activated by clciking on the image, or leave blank for no link.' /></td>
+    <td align='left' nowrap>Hyperlink:</td>
+    <td> 
+      <input value='$hyperlink' name='hyperlink' id='wpcsw_hyperlink' type='text' size='20' />
+    </td>
+  </tr>
+  </tbody> 
+</table>
 			        <p class='submit'>
 			            <input type='button' value='Save' class='button-primary' id='setting_save' name='submit' />
 			            <input type='button' value='Cancel' class='button-primary' id='cancel' />
