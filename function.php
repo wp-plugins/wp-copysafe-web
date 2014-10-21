@@ -263,6 +263,7 @@ function wpcsw_setting_save($param){
 
 function _get_wpcsw_uploadfile_list(){
 	$listdata = array() ;
+	chmod(WPCSW_UPLOAD_PATH, 0775);
 	$file_list = scandir( WPCSW_UPLOAD_PATH );
 	
 	foreach ($file_list as $file) {

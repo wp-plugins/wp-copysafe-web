@@ -88,6 +88,9 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 1.6 =
+* Minor adjustment for WP 4
+
 = 1.5 =
 * Tested and verified on WordPress version 4.0
 * Adjusted upload save form to better fit small screen sizes.
