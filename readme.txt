@@ -4,7 +4,7 @@ Contributors: ArtistScope
 Donate link: http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp
 Tags: protect, secure, prevent
 Requires at least: 3.0.1
-Tested up to: 4.0
+Tested up to: 4.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -87,6 +87,9 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 4. A file list can be displayed showing all CopySafe Web images that have been uploaded.
 
 == Changelog ==
+
+= 1.7 =
+* Tested for compatibilty with WP 4.1.
 
 = 1.6 =
 * Minor adjustment for WP 4
