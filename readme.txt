@@ -88,6 +88,9 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 1.8 =
+* Tested for compatibilty with WP 4.2.
+
 = 1.7 =
 * Tested for compatibilty with WP 4.1.
 
