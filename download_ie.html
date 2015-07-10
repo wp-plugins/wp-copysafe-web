@@ -6,6 +6,18 @@
 <script language="JavaScript" type="text/javascript">
     var m_szReferrer = document.location.search.substring(1).split('=')[1];
 </script>
+<SCRIPT type="text/javascript">
+	var m_szAgent = navigator.userAgent.toLowerCase();
+	var m_bTrident = (m_szAgent.indexOf('trident')!=-1);
+	var m_bTrident6 = (m_szAgent.indexOf('trident/6')!=-1);
+	var m_bTrident5 = (m_szAgent.indexOf('trident/5')!=-1);
+	if ((m_bTrident) && (!(m_bTrident6)) && (!(m_bTrident5))) {
+		alert("Sorry! But the version of web browser that you are using lacks support for significant plugins!\r\n\nHowever not all is lost because you can use the ASPS Web Browser which has been designed for no nonsense support of the services provided by this web site.");
+		window.location.replace("download_asps.html?ms=trident");
+	}
+</SCRIPT>
+
+
 <link REL="stylesheet" href="images/style.css" type="text/css">
 </head>
 
@@ -214,7 +226,7 @@
       <td align="center"><table border="0" cellpadding="10" cellspacing="0" width="100%">
   <tr>
     <td width="100%" align="center">
-              <div class="smText">Copyright &#169; 1998-2014 ArtistScope. All 
+              <div class="smText">Copyright &#169; 1998-2015 ArtistScope. All 
                 Rights Reserved.</div>
             </td>
   </tr>

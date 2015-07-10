@@ -4,7 +4,7 @@ Plugin Name: CopySafe Web
 Plugin URI: http://www.artistscope.com/copysafe_web_protection_wordpress_plugin.asp
 Description: Add copy protection from Print Screen and screen capture. Copysafe Web uses encrypted images and domain lock to extend copy protection for all media displayed on a web page.
 Author: ArtistScope
-Version: 1.8
+Version: 1.9
 Author URI: http://www.artistscope.com/
 
 	Copyright 2015 ArtistScope Pty Limited
@@ -101,10 +101,10 @@ function wpcsw_admin_page_settings() {
                                         'upload_path'	=> $upload_path ,
         				'max_size'	=> (int)$max_size,
                                         'mode'		=> $mode,
+                                        'asps'		=> $asps,
                                         'ie'		=> $ie,
                                         'ff'		=> $ff,
                                         'ch'		=> $ch,
-        				'nav'	   	=> $nav,
                                         'op'		=> $op,
                                         'sa'		=> $sa
                                     );       
@@ -148,6 +148,10 @@ function wpcsw_admin_page_settings() {
 	        		<td align="left"> <select name="mode"><?php echo $select; ?></select></td>
 	        	</tr>
 	            <tr>
+	    		  <th align="left"><label>Allow ASPS:</label></th>
+	    		  <td align="left"> <input name="ie" type="checkbox" value="checked" <?php echo $asps; ?>></td>
+	    	    </tr>
+	            <tr>
 	    		  <th align="left"><label>Allow IE:</label></th>
 	    		  <td align="left"> <input name="ie" type="checkbox" value="checked" <?php echo $ie; ?>></td>
 	    	    </tr>
@@ -159,10 +163,7 @@ function wpcsw_admin_page_settings() {
 	    		  <th align="left"><label>Allow Chrome:</label></th>
 	    		  <td align="left"> <input name="ch" type="checkbox" value="checked" <?php echo $ch; ?>></td>
 	    	    </tr>
-	    	    <tr>
-		    		<th align="left"><label>Allow Navigator:</label></th>
-		    		<td align="left"><input name="nav" type="checkbox" value="checked" <?php echo $nav; ?>></td>
-		    	 </tr>
+
 	            <tr>
 	    		  <th align="left"><label>Allow Opera:</label></th>
 	    		  <td align="left"> <input name="op" type="checkbox" value="checked" <?php echo $op; ?>></td>
@@ -207,15 +208,15 @@ function wpcsw_shortcode( $atts ) {
 	$settings = wp_parse_args( $atts, $settings );
 	
 	extract( $settings ) ;
-    
+
+	if ($asps == "checked") {
+		$asps = '1';
+	}    
 	if ($ch == "checked") {
 		$chrome = '1';
 	}
 	if ($ff == "checked") {
 		$firefox = '1';
-	}
-	if ($nav == "checked") {
-		$navigator = '1';
 	}
 	if ($op == "checked") {
 		$opera = '1';
@@ -226,7 +227,6 @@ function wpcsw_shortcode( $atts ) {
 	if ($ie == "checked") {
 		$msie = '1';
 	}
-	// $nav = ( $navigator == "checked" ) ? true : false ;
 
 	if ($key_safe == "checked")
 		$key_safe = 1;
@@ -262,9 +262,9 @@ function wpcsw_shortcode( $atts ) {
 		var m_bpWindowsOnly = true;	
 		var m_bpProtectionLayer = false;		//this page does not use layer control
 
-		var m_bpChrome = "$chrome";	
+		var m_bpASPS = "$asps";				// ASPS web browsers version 2 and later
+		var m_bpChrome = "$chrome";			// all chrome browsers before version 32	
 		var m_bpFx = "$firefox";			// all firefox browsers from version 5 and later
-		var m_bpNav = "$navigator";
 		var m_bpOpera = "$opera";
 		var m_bpSafari = "$safari";
 		var m_bpMSIE = "$msie";
@@ -296,10 +296,7 @@ function wpcsw_shortcode( $atts ) {
 			var cswbody = document.getElementsByTagName("body")[0];
 			cswbody.setAttribute("onselectstart", "return false;");
 			cswbody.setAttribute("ondragstart", "return false");
-		//	cswbody.setAttribute("onmousedown", "if (event.preventDefault){event.preventDefault();}");
-			cswbody.setAttribute("onBeforePrint", "document.body.style.display = '';");
 			cswbody.setAttribute("onContextmenu", "return false;");
-			cswbody.setAttribute("onClick", "if(event.button==2||event.button==3){event.preventDefault();event.stopPropagation();return false;}");
 		}		
 	 </script>	 
 	 <script src="{$plugin_url}wp-copysafe-web.js" type="text/javascript"></script>
@@ -497,10 +494,10 @@ function wpcsw_activate () {
                                         'upload_path'	=> $upload_dir,
         				'max_size'	=> 100,
                                         'mode'          => "demo",
+        				'asps'		=> "checked",
                                         'ie'            => "checked",
                                         'ff'            => "checked",
                                         'ch'            => "checked",
-        				'nav'		=> "checked",
                                         'op'            => "checked",
                                         'sa'            => "checked"
                                     );

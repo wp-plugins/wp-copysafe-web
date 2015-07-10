@@ -8,9 +8,33 @@
   <script language="JavaScript" type="text/javascript">
     var m_szReferrer = document.location.search.substring(1).split('=')[1];
   </script>
+<script type="text/javascript">
+
+var ua = navigator.userAgent.toLowerCase(); 
+
+function getChromeVersion() {   
+    if (/chrome[\/\s](\d+\.\d+)/.test(ua)){    
+		var chromeversion = new Number(RegExp.$1);   	
+		if (chromeversion >= 42){
+    	 	alert("Sorry! But the version of web browser that you are using lacks support for significant plugins!\r\nHowever not all is lost because you can use the ASPS Web Browser which has been designed for no nonsense support of the services provided by this web site.");
+    	 	window.location.replace("download_asps.html?ms=chrome");
+		}
+	//    document.write(chromeversion);
+	}
+}
+
+function detectSafari() {
+	if (ua.indexOf("safari")!=-1){
+	alert("Sorry! But your web browser is old and lacks support for significant plugins!\r\nHowever not all is lost because you can use the ASPS Web Browser which has been designed for no nonsense support of the services provided by this web site.");
+	 	window.location.replace("download_asps.html?ms=chrome");
+	}
+}
+
+</script>
+
 <link REL="stylesheet" href="images/style.css" type="text/css">
 </head>
-<body alink="#ff0000" bgcolor="#dddddd" link="#3333ff" text="#333333" vlink="#3333ff">
+<body onLoad="getChromeVersion(); detectSafari();" alink="#ff0000" bgcolor="#dddddd" link="#3333ff" text="#333333" vlink="#3333ff">
 <a name="top"></a><br>
 <div align="center">
 <table border="0" cellpadding="0" cellspacing="0" width="860">
@@ -231,7 +255,7 @@ list below, but keep returning here... you may need to restart your web browser<
         <tbody>
           <tr>
             <td align="center" width="100%">
-              <div class="smText">Copyright &#169; 1998-2014 ArtistScope. All 
+              <div class="smText">Copyright &#169; 1998-2015 ArtistScope. All 
                 Rights Reserved.</div>
             </td>
           </tr>

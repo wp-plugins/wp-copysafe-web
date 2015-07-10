@@ -24,6 +24,7 @@ Insert [CopySafe Web Protection](http://www.artistscope.com/copysafe_web_protect
 * Manage settings to control image display options.
 * Add copy protection to by adding just a 20 x 20 pixel image.
 * Protection for all media from Printscreen and screen capture.
+* Fully supported in the ASPS Web Browser.
 
 The use of CopySafe Web [encrypted images](http://www.artistscope.com/image-encryption.asp) is the most secure image protection solution because those images are [domain locked]( http://www.artistscope.com/domain-lock.asp) and cannot be used on any other website. They are also safe from your webmaster. 
 
@@ -87,6 +88,11 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 4. A file list can be displayed showing all CopySafe Web images that have been uploaded.
 
 == Changelog ==
+
+= 1.9 =
+* Added compatibilty for ASPS web browser.
+* Added ASPS as a browser requirement in settings.
+* Updated download pages to cater for lack of IE and Chrome plugin support.
 
 = 1.8 =
 * Tested for compatibilty with WP 4.2.
