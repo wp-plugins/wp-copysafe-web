@@ -89,6 +89,9 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 2.0 =
+* Fixed bug in settings for ASPS selection.
+
 = 1.9 =
 * Added compatibilty for ASPS web browser.
 * Added ASPS as a browser requirement in settings.
