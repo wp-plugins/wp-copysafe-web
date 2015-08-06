@@ -89,6 +89,9 @@ Nothing that is safe from Print Screen or screen capture. However if you want to
 
 == Changelog ==
 
+= 2.1 =
+* Detection update for Windows 10.
+
 = 2.0 =
 * Fixed bug in settings for ASPS selection.
 
